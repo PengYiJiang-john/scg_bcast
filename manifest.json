@@ -16,6 +16,11 @@
   "notes": "This manifest is a file-integrity inventory, not a certificate of empirical or theoretical validity.",
   "files": [
     {
+      "path": ".gitattributes",
+      "sha256": "11fb27fd969bc34af22b815b48fc29880570774dba73eb7d7b59e8ca857abd8d",
+      "size_bytes": 78
+    },
+    {
       "path": ".github/workflows/verify.yml",
       "sha256": "2eac83cdfe4386a8292bcc20e58229999f5b7b098cacc234896655786e7a6093",
       "size_bytes": 852
