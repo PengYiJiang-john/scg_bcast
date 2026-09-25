@@ -1,0 +1,2 @@
+Saved editable SVG, vector PDF and PNG: reproduced/audit_2026-09-26/figures/scg_counterfactual_overview
+Exact Behavioral Shapley: ('1/6', '-1/3', '1/6')

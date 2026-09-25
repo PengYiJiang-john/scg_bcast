@@ -1,0 +1,23 @@
+name: Verify finite numerical artifacts
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python verification/verify_span_bound.py --output-dir reproduced/local
+      - run: python archive/source_access/recompute.py --output-dir reproduced/local/source_access
+      - run: python illustrative_example/deterministic_example.py --output reproduced/local/deterministic_results.json
+      - run: python illustrative_example/make_counterfactual_overview.py --output-dir reproduced/local/figures
+        env:
+          MPLBACKEND: Agg

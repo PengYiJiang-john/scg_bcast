@@ -1,0 +1,5 @@
+condition,case_workflow_count,base_case_count,workflows_per_case,mean_false_semantic_intensity
+source_visible,30,5,6,0.1
+source_deemphasized,30,5,6,0.46
+source_pointer_only,30,5,6,0.9933333333333334
+source_absent,30,5,6,0.98

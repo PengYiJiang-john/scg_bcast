@@ -1,0 +1,5 @@
+condition,n,mean_false_semantic_intensity
+visible,30,0.100
+de_emphasized,30,0.460
+pointer_only,30,0.993
+absent,30,0.980

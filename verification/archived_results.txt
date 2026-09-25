@@ -1,0 +1,4 @@
+{'n': 2, 'epsilon': 0.02, 'variables': 9, 'max_equilibrium_gap': 0.04, 'claimed_bound': 0.04, 'max_same_mode_penalty_change': 0.02, 'potential_residual': 0.0, 'efficiency_residual': 0.0}
+{'n': 3, 'epsilon': 0.02, 'variables': 27, 'max_equilibrium_gap': 0.06, 'claimed_bound': 0.06, 'max_same_mode_penalty_change': 0.02, 'potential_residual': 0.0, 'efficiency_residual': 0.0}
+{'n': 4, 'epsilon': 0.02, 'variables': 81, 'max_equilibrium_gap': 0.08, 'claimed_bound': 0.08, 'max_same_mode_penalty_change': 0.02, 'potential_residual': 0.0, 'efficiency_residual': 1.1379786002407852e-17}
+{'n': 4, 'epsilon': 0.0, 'variables': 81, 'max_equilibrium_gap': 0.0, 'claimed_bound': 0.0, 'max_same_mode_penalty_change': 0.0, 'potential_residual': 0.0, 'efficiency_residual': 3.330669073875472e-17}

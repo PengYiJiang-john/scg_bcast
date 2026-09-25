@@ -1,0 +1,98 @@
+{
+  "status": "recovered_local_archived_logs_not_new_model_runs",
+  "recovered_on": "2026-09-26",
+  "notes": "Source scripts are snapshots as found, not proven historical run versions. No credentials or manuscript included. Generation model/configuration were not persisted in run rows.",
+  "files": [
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_matrix/runs.jsonl",
+      "archive_path": "raw/runs.jsonl",
+      "sha256": "b504235a567a0845c058802ea13ca20a6e99ddc2fcf5ec1281992e95ed76ed04",
+      "bytes": 1274061
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_final_pro_audit_v2/direct_judgments.jsonl",
+      "archive_path": "raw/direct_judgments.jsonl",
+      "sha256": "39cd7ff34bae00da0c11a16c20bfb94abeeb637268c68cc1ee47bdb4e5c75ffc",
+      "bytes": 97898
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_final_pro_audit_v2/prefixes.jsonl",
+      "archive_path": "raw/prefixes.jsonl",
+      "sha256": "8abfd63187fcec9ebf0b96faaeab33070ddd3dafcae7c7405cb10625e236fc80",
+      "bytes": 540435
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_final_pro_audit_v2/intensity_scores.json",
+      "archive_path": "raw/intensity_scores.json",
+      "sha256": "d6d30e9fdbbed4259a487ab698f2153a6811f55ec10f35105deb761ecf5bbbe8",
+      "bytes": 239402
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_final_pro_audit_v2/errors.jsonl",
+      "archive_path": "raw/judge_errors.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/iterative_hypothesis_v2/archive/command_logs/76_h22_source_visibility_matrix.log",
+      "archive_path": "logs/generation_stdout.log",
+      "sha256": "2b1851c16d0a6d6d23c5086d1f37c0830757d4a332bf38a932ca1389901c498b",
+      "bytes": 17482
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/iterative_hypothesis_v2/archive/command_logs/84_h22_final_pro_audit_v2.log",
+      "archive_path": "logs/judge_stdout.log",
+      "sha256": "8aa954fca940942506f5440473127ca1a2d87a4615a0118b7c59b59672436a14",
+      "bytes": 9533
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "scripts/build_h22_source_visibility_cases.py",
+      "archive_path": "source/build_h22_source_visibility_cases.py.txt",
+      "sha256": "57d3089524cb36ebd96a00202c6322054ee14739f4330cb9829b7bba78340a32",
+      "bytes": 5487
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "scripts/run_llm_matrix_incremental.py",
+      "archive_path": "source/run_llm_matrix_incremental.py.txt",
+      "sha256": "9e25230db8e9f41255be451f8ff9965e57953e7cded3640201ecf24eecfeb452",
+      "bytes": 4948
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "scripts/score_intensity_incremental.py",
+      "archive_path": "source/score_intensity_incremental.py.txt",
+      "sha256": "e4cbc1cee629a217838c2d93eb63e1d305d3ece9ad772d13082db3b1bf208036",
+      "bytes": 6396
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "src/scg_rumor/llm_runner.py",
+      "archive_path": "source/llm_runner.py.txt",
+      "sha256": "e451fd0a4efecbfdaa05e20e82d7925d071014c91ca3f43e267fc64cf1d4b11d",
+      "bytes": 11212
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "src/scg_rumor/intensity.py",
+      "archive_path": "source/intensity.py.txt",
+      "sha256": "940878b4452920c0456ec9926f9f4f8d1108ca9bbc71a8308b7a4e729496983f",
+      "bytes": 45134
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_source_visibility_cases/case_metadata.json",
+      "archive_path": "source/case_metadata.json",
+      "sha256": "2dabe05ae7998c3c9dcee44d4ef155fa87cfb8bdb5ff662a66c32f778aeb98e8",
+      "bytes": 476
+    }
+  ]
+}

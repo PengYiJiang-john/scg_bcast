@@ -1,0 +1,2160 @@
+{
+  "result_kind": "constructed_LP_tables_not_LLM_results",
+  "tolerance": 1e-08,
+  "runs": [
+    {
+      "summary": {
+        "n": 2,
+        "eta": 0.02,
+        "variables": 9,
+        "span_constraint_rows": 16,
+        "equilibrium_constraint_rows": 2,
+        "max_designated_profile_gap": 0.040000000000000036,
+        "legacy_comparison_n_eta": 0.04,
+        "max_selected_same_mode_penalty_change": 0.020000000000000018,
+        "designated_equilibrium_loss": 0.040000000000000036,
+        "designated_comparator_loss": 0.0,
+        "witness_min_profile_loss": 0.0,
+        "witness_gap_to_best_profile": 0.040000000000000036,
+        "witness_best_profiles": [
+          [
+            1,
+            1
+          ]
+        ],
+        "gap_lp_max_feasibility_violation": 1.734723475976807e-17,
+        "penalty_lp_max_feasibility_violation": 1.734723475976807e-17,
+        "potential_residual": 0.0,
+        "efficiency_residual": 0.0,
+        "gap_solver_status": 0,
+        "penalty_solver_status": 0,
+        "scope": "constructed finite tables; fixed-profile coalition spans; first-layer penalties"
+      },
+      "witness_tables": [
+        {
+          "key": [
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.8200000000000001
+        },
+        {
+          "key": [
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.0
+        }
+      ]
+    },
+    {
+      "summary": {
+        "n": 3,
+        "eta": 0.02,
+        "variables": 27,
+        "span_constraint_rows": 288,
+        "equilibrium_constraint_rows": 3,
+        "max_designated_profile_gap": 0.06000000000000005,
+        "legacy_comparison_n_eta": 0.06,
+        "max_selected_same_mode_penalty_change": 0.020000000000000073,
+        "designated_equilibrium_loss": 0.06000000000000005,
+        "designated_comparator_loss": 0.0,
+        "witness_min_profile_loss": 0.0,
+        "witness_gap_to_best_profile": 0.06000000000000005,
+        "witness_best_profiles": [
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "gap_lp_max_feasibility_violation": 2.1163626406917047e-16,
+        "penalty_lp_max_feasibility_violation": 1.734723475976807e-17,
+        "potential_residual": 0.0,
+        "efficiency_residual": 0.0,
+        "gap_solver_status": 0,
+        "penalty_solver_status": 0,
+        "scope": "constructed finite tables; fixed-profile coalition spans; first-layer penalties"
+      },
+      "witness_tables": [
+        {
+          "key": [
+            -1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.01999999999999988,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            -1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            -1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            0,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000002,
+          "penalty_change_lp_loss": 0.040000000000000036
+        },
+        {
+          "key": [
+            0,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.019999999999999962,
+          "penalty_change_lp_loss": 0.020000000000000018
+        },
+        {
+          "key": [
+            0,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.02000000000000013,
+          "penalty_change_lp_loss": 0.040000000000000036
+        },
+        {
+          "key": [
+            0,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.8400000000000002,
+          "penalty_change_lp_loss": 0.020000000000000018
+        },
+        {
+          "key": [
+            0,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.06000000000000005,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.060000000000000164,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.8400000000000002,
+          "penalty_change_lp_loss": 0.040000000000000036
+        },
+        {
+          "key": [
+            0,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.06000000000000005,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.02000000000000013,
+          "penalty_change_lp_loss": 0.020000000000000018
+        },
+        {
+          "key": [
+            1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.020000000000000018
+        },
+        {
+          "key": [
+            1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.059999999999999915,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.020000000000000035,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.0
+        }
+      ]
+    },
+    {
+      "summary": {
+        "n": 4,
+        "eta": 0.02,
+        "variables": 81,
+        "span_constraint_rows": 3584,
+        "equilibrium_constraint_rows": 4,
+        "max_designated_profile_gap": 0.08000000000000021,
+        "legacy_comparison_n_eta": 0.08,
+        "max_selected_same_mode_penalty_change": 0.019999999999999962,
+        "designated_equilibrium_loss": 0.08000000000000021,
+        "designated_comparator_loss": 0.0,
+        "witness_min_profile_loss": 0.0,
+        "witness_gap_to_best_profile": 0.08000000000000021,
+        "witness_best_profiles": [
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "gap_lp_max_feasibility_violation": 1.6306400674181987e-16,
+        "penalty_lp_max_feasibility_violation": 5.724587470723463e-16,
+        "potential_residual": 0.0,
+        "efficiency_residual": 1.1379786002407855e-17,
+        "gap_solver_status": 0,
+        "penalty_solver_status": 0,
+        "scope": "constructed finite tables; fixed-profile coalition spans; first-layer penalties"
+      },
+      "witness_tables": [
+        {
+          "key": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7800000000000001
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7800000000000004
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7799999999999998
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.7800000000000001
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.7599999999999998
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7799999999999999
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7600000000000002
+        },
+        {
+          "key": [
+            -1,
+            0,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000002,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            0,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8400000000000003,
+          "penalty_change_lp_loss": 0.7800000000000002
+        },
+        {
+          "key": [
+            -1,
+            0,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8400000000000002,
+          "penalty_change_lp_loss": 0.7600000000000003
+        },
+        {
+          "key": [
+            -1,
+            0,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.8400000000000003,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            0,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.8600000000000002,
+          "penalty_change_lp_loss": 0.7800000000000001
+        },
+        {
+          "key": [
+            -1,
+            0,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.8600000000000003,
+          "penalty_change_lp_loss": 0.7599999999999998
+        },
+        {
+          "key": [
+            -1,
+            0,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.8400000000000002,
+          "penalty_change_lp_loss": 0.7599999999999999
+        },
+        {
+          "key": [
+            -1,
+            0,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.8600000000000003,
+          "penalty_change_lp_loss": 0.7600000000000002
+        },
+        {
+          "key": [
+            -1,
+            0,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.8400000000000002,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            -1,
+            1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.78
+        },
+        {
+          "key": [
+            -1,
+            1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.7600000000000001
+        },
+        {
+          "key": [
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7600000000000001
+        },
+        {
+          "key": [
+            -1,
+            1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.7599999999999998
+        },
+        {
+          "key": [
+            -1,
+            1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.8600000000000001,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            -1,
+            1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            -1,
+            1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7599999999999999
+        },
+        {
+          "key": [
+            -1,
+            1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.8400000000000001,
+          "penalty_change_lp_loss": 0.76
+        },
+        {
+          "key": [
+            -1,
+            1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.8200000000000001,
+          "penalty_change_lp_loss": 0.7600000000000002
+        },
+        {
+          "key": [
+            0,
+            -1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.039999999999999925
+        },
+        {
+          "key": [
+            0,
+            -1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.020000000000000035,
+          "penalty_change_lp_loss": 0.020000000000000018
+        },
+        {
+          "key": [
+            0,
+            -1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.02000000000000035
+        },
+        {
+          "key": [
+            0,
+            -1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.02000000000000003,
+          "penalty_change_lp_loss": 0.019999999999999796
+        },
+        {
+          "key": [
+            0,
+            -1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.04000000000000007,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.019999999999999796
+        },
+        {
+          "key": [
+            0,
+            -1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.02000000000000003,
+          "penalty_change_lp_loss": 0.02000000000000013
+        },
+        {
+          "key": [
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.020000000000000143,
+          "penalty_change_lp_loss": 0.019999999999999907
+        },
+        {
+          "key": [
+            0,
+            0,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.04000000000000016,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.04000000000000016,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.04000000000000016,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.08000000000000021,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.0800000000000002,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.04000000000000016,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.08000000000000018,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.040000000000000174,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.019999999999999796
+        },
+        {
+          "key": [
+            0,
+            1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.02000000000000013
+        },
+        {
+          "key": [
+            0,
+            1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.0800000000000001,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.019999999999999796
+        },
+        {
+          "key": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.02000000000000003,
+          "penalty_change_lp_loss": 0.02000000000000013
+        },
+        {
+          "key": [
+            1,
+            -1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.020000000000000018
+        },
+        {
+          "key": [
+            1,
+            -1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.019999999999999907,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.04000000000000007,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.019999999999999685
+        },
+        {
+          "key": [
+            1,
+            -1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.019999999999999907,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.02000000000000013,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.04000000000000015,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.02000000000000013,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.04000000000000026,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.08000000000000021,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.04000000000000026,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            1,
+            -1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.04000000000000015,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.02000000000000013,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.019999999999999907,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.040000000000000036,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "gap_lp_loss": 0.020000000000000018,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "gap_lp_loss": 0.019999999999999907,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.0
+        }
+      ]
+    },
+    {
+      "summary": {
+        "n": 4,
+        "eta": 0.0,
+        "variables": 81,
+        "span_constraint_rows": 3584,
+        "equilibrium_constraint_rows": 4,
+        "max_designated_profile_gap": 0.0,
+        "legacy_comparison_n_eta": 0.0,
+        "max_selected_same_mode_penalty_change": 3.3306690738754696e-16,
+        "designated_equilibrium_loss": 0.0,
+        "designated_comparator_loss": 0.0,
+        "witness_min_profile_loss": 0.0,
+        "witness_gap_to_best_profile": 0.0,
+        "witness_best_profiles": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "gap_lp_max_feasibility_violation": 3.3306690738754696e-16,
+        "penalty_lp_max_feasibility_violation": 5.551115123125783e-16,
+        "potential_residual": 0.0,
+        "efficiency_residual": 3.33066907387547e-17,
+        "gap_solver_status": 0,
+        "penalty_solver_status": 0,
+        "scope": "constructed finite tables; fixed-profile coalition spans; first-layer penalties"
+      },
+      "witness_tables": [
+        {
+          "key": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8000000000000002,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.8000000000000004
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            -1,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            0,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            0,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8000000000000002,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            0,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            0,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            0,
+            0,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            0,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            0,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            0,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            0,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8000000000000002,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            1,
+            0,
+            0
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.8000000000000004
+        },
+        {
+          "key": [
+            -1,
+            1,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            -1,
+            1,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8000000000000005
+        },
+        {
+          "key": [
+            -1,
+            1,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.8
+        },
+        {
+          "key": [
+            0,
+            -1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8000000000000003,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            0,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            -1,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8000000000000002,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8000000000000002,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8000000000000002,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            0,
+            1,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            0,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            -1,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            -1,
+            -1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            -1,
+            0
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            -1,
+            1
+          ],
+          "gap_lp_loss": 0.8,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            0,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": 0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            1,
+            -1
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            1,
+            0
+          ],
+          "gap_lp_loss": -0.0,
+          "penalty_change_lp_loss": -0.0
+        },
+        {
+          "key": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "gap_lp_loss": 0.0,
+          "penalty_change_lp_loss": 0.0
+        }
+      ]
+    }
+  ]
+}

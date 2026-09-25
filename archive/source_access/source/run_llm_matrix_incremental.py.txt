@@ -1,0 +1,132 @@
+from __future__ import annotations
+
+import argparse
+import glob
+import json
+import os
+import time
+from pathlib import Path
+
+from scg_rumor.engine import load_cases
+from scg_rumor.llm_runner import LLMConfig, LLMRunnerError, run_llm_case_workflow
+from scg_rumor.models import to_plain_data
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Run real-LLM SCG traces with one-run-at-a-time persistence.")
+    parser.add_argument("--cases-glob", required=True)
+    parser.add_argument("--workflows", nargs="+", required=True)
+    parser.add_argument("--out-dir", required=True)
+    parser.add_argument("--provider", choices=["openai", "gemini", "ollama"], default="gemini")
+    parser.add_argument("--model", required=True)
+    parser.add_argument("--env-file")
+    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--max-output-tokens", type=int, default=260)
+    parser.add_argument("--timeout-seconds", type=int, default=75)
+    parser.add_argument("--retries", type=int, default=2)
+    parser.add_argument("--limit-cases", type=int)
+    args = parser.parse_args()
+
+    if args.env_file:
+        load_env_file(args.env_file)
+
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    runs_path = out_dir / "runs.jsonl"
+    errors_path = out_dir / "errors.jsonl"
+    matrix_path = out_dir / "matrix.json"
+
+    cases = load_cases(args.cases_glob)
+    if args.limit_cases is not None:
+        cases = cases[: args.limit_cases]
+    config = LLMConfig(
+        provider=args.provider,
+        model=args.model,
+        temperature=args.temperature,
+        max_output_tokens=args.max_output_tokens,
+        timeout_seconds=args.timeout_seconds,
+    )
+
+    completed = load_completed_keys(runs_path)
+    total = len(cases) * len(args.workflows)
+    print(f"Loaded {len(cases)} cases x {len(args.workflows)} workflows = {total} runs.")
+    print(f"Already completed: {len(completed)}")
+
+    for case in cases:
+        for workflow_id in args.workflows:
+            key = (case.case_id, workflow_id)
+            if key in completed:
+                continue
+            label = f"{case.case_id} / {workflow_id}"
+            for attempt in range(1, args.retries + 2):
+                try:
+                    print(f"[run] {label} attempt {attempt}")
+                    run = run_llm_case_workflow(case, workflow_id, config)
+                    append_jsonl(runs_path, to_plain_data(run))
+                    completed.add(key)
+                    write_matrix(runs_path, matrix_path)
+                    print(f"[ok] {label} completed {len(completed)}/{total}")
+                    break
+                except LLMRunnerError as exc:
+                    error = {
+                        "case_id": case.case_id,
+                        "workflow_id": workflow_id,
+                        "attempt": attempt,
+                        "error": str(exc),
+                    }
+                    append_jsonl(errors_path, error)
+                    print(f"[error] {label} attempt {attempt}: {exc}")
+                    if attempt > args.retries:
+                        print(f"[skip] {label}")
+                    else:
+                        time.sleep(2.0 * attempt)
+
+    write_matrix(runs_path, matrix_path)
+    print(f"Wrote {matrix_path}")
+    print(f"Completed runs: {len(load_completed_keys(runs_path))}/{total}")
+
+
+def load_env_file(path: str) -> None:
+    env_path = Path(path)
+    if not env_path.exists():
+        raise SystemExit(f"env file not found: {path}")
+    for line in env_path.read_text(encoding="utf-8", errors="ignore").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        key, value = stripped.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+def load_completed_keys(path: Path) -> set[tuple[str, str]]:
+    keys: set[tuple[str, str]] = set()
+    if not path.exists():
+        return keys
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        item = json.loads(line)
+        keys.add((str(item["case"]["case_id"]), str(item["workflow"]["workflow_id"])))
+    return keys
+
+
+def append_jsonl(path: Path, item: dict) -> None:
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(item, ensure_ascii=False) + "\n")
+        handle.flush()
+
+
+def write_matrix(runs_path: Path, matrix_path: Path) -> None:
+    runs = []
+    if runs_path.exists():
+        for line in runs_path.read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                runs.append(json.loads(line))
+    matrix_path.write_text(json.dumps({"runs": runs}, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()

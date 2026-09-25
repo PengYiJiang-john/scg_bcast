@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "purpose": "H22 source visibility test after H21 source-anchoring result.",
+  "conditions": [
+    "source_visible",
+    "source_deemphasized",
+    "source_pointer_only",
+    "source_absent"
+  ],
+  "base_files": [
+    "experiments_public/scifact/scifact_105.json",
+    "experiments/legal_deadline.json",
+    "experiments/privacy_retention.json",
+    "experiments/finance_cashflow.json",
+    "experiments/product_recall.json"
+  ],
+  "case_count": 20
+}

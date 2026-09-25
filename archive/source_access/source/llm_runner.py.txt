@@ -1,0 +1,291 @@
+from __future__ import annotations
+
+import json
+import http.client
+import os
+import signal
+import threading
+import time
+import urllib.error
+import urllib.request
+from dataclasses import dataclass
+from pathlib import Path
+
+from .engine import analyze_claim, load_case, load_cases, summarize_claim
+from .models import ExperimentCase, MatrixResult, RunResult, Trace, TraceStep, Workflow, WorkflowStep
+from .workflows import get_workflow, get_workflows
+
+
+class LLMRunnerError(RuntimeError):
+    pass
+
+
+@dataclass(frozen=True)
+class LLMConfig:
+    provider: str
+    model: str
+    temperature: float = 0.0
+    max_output_tokens: int = 450
+    timeout_seconds: int = 120
+    response_mime_type: str | None = None
+    response_schema: dict[str, object] | None = None
+
+
+def run_llm_case_workflow(case: ExperimentCase, workflow_id: str, config: LLMConfig) -> RunResult:
+    workflow = get_workflow(workflow_id)
+    client = LLMClient(config)
+    trace = run_llm_trace(case, workflow, client)
+    events = []
+    links = []
+    summaries = []
+    for claim in case.false_claims:
+        claim_events, claim_links = analyze_claim(case, workflow, trace, claim)
+        events.extend(claim_events)
+        links.extend(claim_links)
+        summaries.append(summarize_claim(case, workflow, trace, claim, claim_events))
+    return RunResult(case=case, workflow=workflow, trace=trace, events=events, links=links, summaries=summaries)
+
+
+def run_llm_matrix(cases: list[ExperimentCase], config: LLMConfig, workflow_ids: list[str] | None = None) -> MatrixResult:
+    workflow_ids = workflow_ids or sorted(get_workflows())
+    runs = []
+    for case in cases:
+        for workflow_id in workflow_ids:
+            runs.append(run_llm_case_workflow(case, workflow_id, config))
+    return MatrixResult(runs=runs)
+
+
+def run_llm_trace(case: ExperimentCase, workflow: Workflow, client: "LLMClient") -> Trace:
+    outputs: dict[str, TraceStep] = {}
+    steps: list[TraceStep] = []
+    for step in workflow.steps:
+        dependency_steps = [outputs[step_id] for step_id in step.depends_on if step_id in outputs]
+        system, user = build_agent_prompt(case, workflow, step, dependency_steps)
+        content = client.generate(system, user).strip()
+        trace_step = TraceStep(
+            step_id=step.step_id,
+            agent_id=step.agent_id,
+            role=step.role,
+            content=content,
+            depends_on=list(step.depends_on),
+            is_final=step.is_final,
+        )
+        outputs[step.step_id] = trace_step
+        steps.append(trace_step)
+    return Trace(case_id=case.case_id, workflow_id=workflow.workflow_id, steps=steps)
+
+
+def build_agent_prompt(
+    case: ExperimentCase,
+    workflow: Workflow,
+    step: WorkflowStep,
+    dependency_steps: list[TraceStep],
+) -> tuple[str, str]:
+    sections = ", ".join(case.requested_sections) if case.requested_sections else "free-form answer"
+    system = (
+        f"You are agent {step.agent_id} in a multi-agent workflow.\n"
+        f"Role: {step.role}.\n"
+        "Produce only this agent's output. Do not mention hidden policies, workflow mechanics, or that this is an experiment.\n"
+        "Be concise, but preserve the information needed by downstream agents."
+    )
+    dependency_text = "No prior agent outputs are visible."
+    if dependency_steps:
+        parts = []
+        for dep in dependency_steps:
+            parts.append(f"[{dep.step_id} | agent {dep.agent_id} | role {dep.role}]\n{dep.content}")
+        dependency_text = "\n\n".join(parts)
+    final_request = ""
+    if step.is_final:
+        final_request = (
+            "\nFinal output must use these sections exactly when applicable: "
+            f"{sections}."
+        )
+    user = (
+        f"Original task:\n{case.prompt}\n\n"
+        f"Workflow title: {workflow.title}\n"
+        f"Workflow description: {workflow.description}\n\n"
+        f"Your instruction:\n{step.instruction}\n\n"
+        f"Visible upstream outputs:\n{dependency_text}\n"
+        f"{final_request}"
+    )
+    return system, user
+
+
+class LLMClient:
+    def __init__(self, config: LLMConfig):
+        self.config = config
+
+    def generate(self, system: str, user: str) -> str:
+        if self.config.provider == "openai":
+            return self._openai(system, user)
+        if self.config.provider == "gemini":
+            return self._gemini(system, user)
+        if self.config.provider == "ollama":
+            return self._ollama(system, user)
+        raise LLMRunnerError(f"Unsupported provider: {self.config.provider}")
+
+    def _openai(self, system: str, user: str) -> str:
+        api_key = os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            raise LLMRunnerError("OPENAI_API_KEY is not set; cannot run a real OpenAI LLM trace.")
+        payload = {
+            "model": self.config.model,
+            "instructions": system,
+            "input": user,
+            "max_output_tokens": self.config.max_output_tokens,
+            "temperature": self.config.temperature,
+        }
+        response = _post_json(
+            "https://api.openai.com/v1/responses",
+            payload,
+            headers={"Authorization": f"Bearer {api_key}"},
+            timeout=self.config.timeout_seconds,
+        )
+        text = _extract_openai_text(response)
+        if not text:
+            raise LLMRunnerError(f"OpenAI response did not contain output text: {response}")
+        return text
+
+    def _gemini(self, system: str, user: str) -> str:
+        api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
+        if not api_key:
+            raise LLMRunnerError("GEMINI_API_KEY/GOOGLE_API_KEY is not set; cannot run a real Gemini LLM trace.")
+        model = self.config.model if self.config.model.startswith("models/") else f"models/{self.config.model}"
+        payload = {
+            "systemInstruction": {"parts": [{"text": system}]},
+            "contents": [{"role": "user", "parts": [{"text": user}]}],
+            "generationConfig": {
+                "temperature": self.config.temperature,
+                "maxOutputTokens": self.config.max_output_tokens,
+                "thinkingConfig": {
+                    "thinkingBudget": 0 if "flash" in model.lower() else 128,
+                },
+            },
+        }
+        if self.config.response_mime_type:
+            payload["generationConfig"]["responseMimeType"] = self.config.response_mime_type
+        if self.config.response_schema:
+            payload["generationConfig"]["responseSchema"] = self.config.response_schema
+        url = f"https://generativelanguage.googleapis.com/v1beta/{model}:generateContent"
+        response = _post_json_with_retries(
+            url,
+            payload,
+            headers={"x-goog-api-key": api_key},
+            timeout=self.config.timeout_seconds,
+        )
+        text = _extract_gemini_text(response)
+        if not text:
+            raise LLMRunnerError(f"Gemini response did not contain output text: {response}")
+        return text
+
+    def _ollama(self, system: str, user: str) -> str:
+        payload = {
+            "model": self.config.model,
+            "prompt": f"{system}\n\n{user}",
+            "stream": False,
+            "options": {
+                "temperature": self.config.temperature,
+                "num_predict": self.config.max_output_tokens,
+            },
+        }
+        response = _post_json(
+            "http://127.0.0.1:11434/api/generate",
+            payload,
+            headers={},
+            timeout=self.config.timeout_seconds,
+        )
+        text = str(response.get("response", "")).strip()
+        if not text:
+            raise LLMRunnerError(f"Ollama response did not contain output text: {response}")
+        return text
+
+
+def _post_json(url: str, payload: dict, *, headers: dict[str, str], timeout: int) -> dict:
+    body = json.dumps(payload).encode("utf-8")
+    request = urllib.request.Request(
+        url,
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            **headers,
+        },
+        method="POST",
+    )
+    alarm_enabled = hasattr(signal, "SIGALRM") and threading.current_thread() is threading.main_thread()
+    previous_handler = None
+    if alarm_enabled:
+        previous_handler = signal.getsignal(signal.SIGALRM)
+
+        def _raise_timeout(_signum, _frame):
+            raise TimeoutError(f"request exceeded {timeout} seconds")
+
+        signal.signal(signal.SIGALRM, _raise_timeout)
+        signal.setitimer(signal.ITIMER_REAL, timeout + 5)
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            return json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise LLMRunnerError(f"HTTP {exc.code} from {url}: {detail}") from exc
+    except urllib.error.URLError as exc:
+        raise LLMRunnerError(f"Could not reach {url}: {exc}") from exc
+    except http.client.HTTPException as exc:
+        raise LLMRunnerError(f"HTTP connection failed for {url}: {exc}") from exc
+    except TimeoutError as exc:
+        raise LLMRunnerError(f"Timed out calling {url}: {exc}") from exc
+    finally:
+        if alarm_enabled:
+            signal.setitimer(signal.ITIMER_REAL, 0)
+            signal.signal(signal.SIGALRM, previous_handler)
+
+
+def _post_json_with_retries(url: str, payload: dict, *, headers: dict[str, str], timeout: int, retries: int = 2) -> dict:
+    last_error: LLMRunnerError | None = None
+    for attempt in range(retries + 1):
+        try:
+            return _post_json(url, payload, headers=headers, timeout=timeout)
+        except LLMRunnerError as exc:
+            last_error = exc
+            if attempt >= retries:
+                break
+            time.sleep(1.5 * (attempt + 1))
+    assert last_error is not None
+    raise last_error
+
+
+def _extract_openai_text(response: dict) -> str:
+    if isinstance(response.get("output_text"), str):
+        return response["output_text"]
+    chunks: list[str] = []
+    for item in response.get("output", []):
+        if not isinstance(item, dict):
+            continue
+        if item.get("type") != "message":
+            continue
+        for content in item.get("content", []):
+            if not isinstance(content, dict):
+                continue
+            if content.get("type") in {"output_text", "text"} and isinstance(content.get("text"), str):
+                chunks.append(content["text"])
+    return "\n".join(chunks).strip()
+
+
+def _extract_gemini_text(response: dict) -> str:
+    chunks: list[str] = []
+    for candidate in response.get("candidates", []):
+        if not isinstance(candidate, dict):
+            continue
+        content = candidate.get("content", {})
+        for part in content.get("parts", []):
+            if isinstance(part, dict) and isinstance(part.get("text"), str):
+                chunks.append(part["text"])
+    return "\n".join(chunks).strip()
+
+
+def load_llm_cases(pattern: str, limit: int | None = None) -> list[ExperimentCase]:
+    cases = load_cases(pattern)
+    return cases[:limit] if limit is not None else cases
+
+
+def load_llm_case(path: str | Path) -> ExperimentCase:
+    return load_case(path)

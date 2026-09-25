@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import time
+from pathlib import Path
+
+from scg_rumor.cli import default_judge_model, format_intensity_console, load_env_file
+from scg_rumor.intensity import (
+    DirectIntensityJudgment,
+    build_prefixes_from_matrix,
+    direct_intensity_result,
+    heuristic_prefix_score,
+    heuristic_stage,
+    llm_direct_judge_prefix,
+    load_matrix_json,
+    read_jsonl,
+    write_direct_intensity_outputs,
+)
+from scg_rumor.intensity_figures import make_intensity_figures
+from scg_rumor.llm_runner import LLMClient, LLMConfig, LLMRunnerError
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Incrementally score SCG prefix intensity with resume support.")
+    parser.add_argument("--matrix", required=True)
+    parser.add_argument("--out-dir", required=True)
+    parser.add_argument("--judge-provider", choices=["openai", "gemini", "ollama", "heuristic"], default="gemini")
+    parser.add_argument("--judge-model", default="")
+    parser.add_argument("--env-file")
+    parser.add_argument("--temperature", type=float, default=0.0)
+    parser.add_argument("--max-output-tokens", type=int, default=220)
+    parser.add_argument("--timeout-seconds", type=int, default=90)
+    parser.add_argument("--retries", type=int, default=3)
+    parser.add_argument("--retry-sleep", type=float, default=8.0)
+    parser.add_argument("--max-prefixes", type=int)
+    parser.add_argument("--only-final", action="store_true")
+    parser.add_argument("--case-regex", default="")
+    parser.add_argument("--workflow-regex", default="")
+    parser.add_argument("--make-figures", action="store_true")
+    args = parser.parse_args()
+
+    if args.env_file:
+        load_env_file(args.env_file)
+
+    out_dir = Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    judgment_path = out_dir / "direct_judgments.jsonl"
+    error_path = out_dir / "errors.jsonl"
+
+    matrix = load_matrix_json(args.matrix)
+    prefixes = [item for item in build_prefixes_from_matrix(matrix, include_anchors=False) if not item.is_anchor]
+    if args.only_final:
+        prefixes = [item for item in prefixes if item.is_final]
+    if args.case_regex:
+        pattern = re.compile(args.case_regex)
+        prefixes = [item for item in prefixes if pattern.search(item.case_id)]
+    if args.workflow_regex:
+        pattern = re.compile(args.workflow_regex)
+        prefixes = [item for item in prefixes if pattern.search(item.workflow_id)]
+    if args.max_prefixes is not None:
+        prefixes = prefixes[: args.max_prefixes]
+
+    existing: dict[str, DirectIntensityJudgment] = {}
+    if judgment_path.exists():
+        for row in read_jsonl(judgment_path):
+            try:
+                item = DirectIntensityJudgment.from_dict(row)
+            except Exception:
+                continue
+            existing[item.prefix_id] = item
+
+    judge_model = args.judge_model or default_judge_model(args.judge_provider)
+    client = None
+    if args.judge_provider != "heuristic":
+        client = LLMClient(
+            LLMConfig(
+                provider=args.judge_provider,
+                model=judge_model,
+                temperature=args.temperature,
+                max_output_tokens=args.max_output_tokens,
+                timeout_seconds=args.timeout_seconds,
+            )
+        )
+
+    total = len(prefixes)
+    print(f"Loaded {total} prefixes. Already judged: {len(existing)}. Model: {judge_model}", flush=True)
+    with judgment_path.open("a", encoding="utf-8") as out, error_path.open("a", encoding="utf-8") as err:
+        for index, prefix in enumerate(prefixes, start=1):
+            if prefix.prefix_id in existing:
+                continue
+            print(f"[judge] {index}/{total} {prefix.case_id} / {prefix.workflow_id} / t{prefix.step_index}", flush=True)
+            last_error = ""
+            for attempt in range(1, args.retries + 1):
+                try:
+                    if args.judge_provider == "heuristic":
+                        intensity = heuristic_prefix_score(prefix)
+                        judgment = DirectIntensityJudgment(
+                            prefix_id=prefix.prefix_id,
+                            intensity=intensity,
+                            stage=heuristic_stage(intensity),
+                            reason=f"Heuristic direct score {intensity:.2f}.",
+                            judge_model=judge_model,
+                        )
+                    else:
+                        assert client is not None
+                        judgment = llm_direct_judge_prefix(prefix, client, judge_model=judge_model)
+                    out.write(json.dumps(judgment.to_dict(), ensure_ascii=False) + "\n")
+                    out.flush()
+                    existing[prefix.prefix_id] = judgment
+                    break
+                except (LLMRunnerError, TimeoutError, OSError) as exc:
+                    last_error = str(exc)
+                    print(f"[retry] attempt {attempt}/{args.retries} failed: {last_error[:180]}", flush=True)
+                    if attempt < args.retries:
+                        time.sleep(args.retry_sleep * attempt)
+            else:
+                error_row = {
+                    "prefix_id": prefix.prefix_id,
+                    "case_id": prefix.case_id,
+                    "workflow_id": prefix.workflow_id,
+                    "step_index": prefix.step_index,
+                    "error": last_error,
+                }
+                err.write(json.dumps(error_row, ensure_ascii=False) + "\n")
+                err.flush()
+
+    judgments = [existing[item.prefix_id] for item in prefixes if item.prefix_id in existing]
+    result = direct_intensity_result(prefixes, judgments)
+    paths = write_direct_intensity_outputs(out_dir, prefixes=prefixes, judgments=judgments, result=result)
+    print(format_intensity_console(result), flush=True)
+    print(f"\nWrote {paths['scores']}", flush=True)
+    print(f"Wrote {paths['direct_judgments']}", flush=True)
+    if args.make_figures:
+        figure_paths = make_intensity_figures(result, out_dir / "figures")
+        print(f"Wrote {len(figure_paths)} intensity SVG figures under {out_dir / 'figures'}", flush=True)
+    if len(judgments) != total:
+        print(f"WARNING: judged {len(judgments)}/{total}; see {error_path}", flush=True)
+
+
+if __name__ == "__main__":
+    main()
