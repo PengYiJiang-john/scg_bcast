@@ -6,6 +6,7 @@
   "llm_experiments_E1_E2_E3_status": "planned_not_executed",
   "numerical_status": "locally_rerun_with_complete_constructed_witness_tables",
   "historical_H22_status": "archived_raw_responses_recovered_and_reaggregated; generator_metadata_incomplete",
+  "propagation_graph_status": "posthoc_metrics_on_prescribed_workflows_and_legacy_rule_labels; not_semantic_ground_truth",
   "release_excludes": [
     "protocols/latex/",
     ".venv/",
@@ -22,8 +23,8 @@
     },
     {
       "path": ".github/workflows/verify.yml",
-      "sha256": "2eac83cdfe4386a8292bcc20e58229999f5b7b098cacc234896655786e7a6093",
-      "size_bytes": 852
+      "sha256": "c86e5582c5c7b7c079377cfbf2b274be7e0e3ee6ad91df099e247f7707b2d724",
+      "size_bytes": 1293
     },
     {
       "path": ".gitignore",
@@ -32,8 +33,113 @@
     },
     {
       "path": "README.md",
-      "sha256": "763835c5cbdb52a09061475734aeaf559d510111af80d35168d3bc96c634ae63",
-      "size_bytes": 9228
+      "sha256": "2f8e30a0d8feaba395ddaf28431933994b6f84b99bd32fa25bc77fb4a7774f4f",
+      "size_bytes": 11632
+    },
+    {
+      "path": "analysis/propagation_graphs/README.md",
+      "sha256": "9e84d52f92ff8b7938bcb16e0e8437277d74008fea0a67eac891aa66fca84e73",
+      "size_bytes": 9449
+    },
+    {
+      "path": "analysis/propagation_graphs/analyze.py",
+      "sha256": "93b8f1878746c0dba0627474894de6b575e472e9ab62e0fbad1830eebea17268",
+      "size_bytes": 22111
+    },
+    {
+      "path": "analysis/propagation_graphs/data/h22_flash_step_judgments.jsonl",
+      "sha256": "9706564af54d558cb8cb66de870b56066f0c7999ae8cf7baf5239a543706a08c",
+      "size_bytes": 595342
+    },
+    {
+      "path": "analysis/propagation_graphs/data/h22_flash_step_scores.json",
+      "sha256": "fa72500674f1f9cf505afb4fff7d611a3a394d23a3e0a3701fe38a87dea2666e",
+      "size_bytes": 1355569
+    },
+    {
+      "path": "analysis/propagation_graphs/data/legacy_engine_snapshot.py.txt",
+      "sha256": "37d3d68e98c974a7266541f72bc676851743d671a14c4996dca1bec2871e0f0b",
+      "size_bytes": 23305
+    },
+    {
+      "path": "analysis/propagation_graphs/data/scifact_legacy_matrix.json",
+      "sha256": "fc9f5d1df896d25bf98742ea8f0ecc91eca31e63259dbd92bd50a0538302b855",
+      "size_bytes": 271415
+    },
+    {
+      "path": "analysis/propagation_graphs/data/source_manifest.json",
+      "sha256": "da40473102a1b8f7761fa0cb3321b4a5f8cce2e9b8e239d003fb04e24507a6ba",
+      "size_bytes": 2519
+    },
+    {
+      "path": "analysis/propagation_graphs/figures/01_regex_empty_high_adoption.png",
+      "sha256": "1a4fc1fecc273c1bf3596f73b8ca74f94330031c34236d6d2a84e6e09e6b4849",
+      "size_bytes": 191499
+    },
+    {
+      "path": "analysis/propagation_graphs/figures/02_nonchain_merge.png",
+      "sha256": "704f450c277e779680fdacd422f6647145a8686f166b46ac9f4ea91916f4ba0c",
+      "size_bytes": 188838
+    },
+    {
+      "path": "analysis/propagation_graphs/figures/03_chain_fragment.png",
+      "sha256": "1f83828fa9c593594fdf9b9cf4b0c017bdd92e55ff80c2a21228c954ba8ca071",
+      "size_bytes": 176197
+    },
+    {
+      "path": "analysis/propagation_graphs/figures/04_path_coverage_is_not_chain.png",
+      "sha256": "40f64542915bdee6195c3ea8d0df9716764c6ec615e12fc14569c07f7ffb4f30",
+      "size_bytes": 158965
+    },
+    {
+      "path": "analysis/propagation_graphs/plot_examples.py",
+      "sha256": "fcd8f3fa262e1e19e9adac6f917f934dbda1b38f2d88f2955956ad9ee7f1cf13",
+      "size_bytes": 7933
+    },
+    {
+      "path": "analysis/propagation_graphs/qualitative_checks.md",
+      "sha256": "79773046cb80fb23aedee0650114de2c43548b090e55cd055473be297f3c020f",
+      "size_bytes": 5884
+    },
+    {
+      "path": "analysis/propagation_graphs/results/analysis_stdout.json",
+      "sha256": "92c5119fda34dbe75a0951e0db814d57e003591f7e3f8c0e1afe1287b016a201",
+      "size_bytes": 1778
+    },
+    {
+      "path": "analysis/propagation_graphs/results/by_workflow_compact.csv",
+      "sha256": "823f86d77589067c0d898bfcc39b4c2ad54b5d587b7557ec615fdd8b8586fb10",
+      "size_bytes": 900
+    },
+    {
+      "path": "analysis/propagation_graphs/results/graph_records.json",
+      "sha256": "0af27bc081524fc3be4bc32714f818f7c8f5c8ef100b05636eb22697f987e2bd",
+      "size_bytes": 565878
+    },
+    {
+      "path": "analysis/propagation_graphs/results/per_run_graph_metrics.csv",
+      "sha256": "48c72917a3d858d4c717829b648b804262236b353ee2f04623d76eabbb285031",
+      "size_bytes": 37141
+    },
+    {
+      "path": "analysis/propagation_graphs/results/per_step_annotations.csv",
+      "sha256": "0c51f80cc26fe48fd27b142f41496dfa9f6854d654e6a0eb050feca67846b186",
+      "size_bytes": 181831
+    },
+    {
+      "path": "analysis/propagation_graphs/results/selected_examples.json",
+      "sha256": "e16ca3dc6459d7d9783d3d9addbd0a802f577fa9e4a06c57361c36719351cbe0",
+      "size_bytes": 17300
+    },
+    {
+      "path": "analysis/propagation_graphs/results/self_test.txt",
+      "sha256": "15b5e7b5b57d3beedb514eec7c60c56d148b4a30492b7c180b3d6df8d387d9bc",
+      "size_bytes": 36
+    },
+    {
+      "path": "analysis/propagation_graphs/results/summary.json",
+      "sha256": "0a2508e2185b4329c5cd9c7a2769bd70117316deaceadb3f47e23de4a13f7fd9",
+      "size_bytes": 220888
     },
     {
       "path": "archive/source_access/README.md",
@@ -192,13 +298,13 @@
     },
     {
       "path": "refresh_manifest.py",
-      "sha256": "058d3424cace88e8008ccb94a5badf665dfeca3fd07149ce93155bd32462ffb1",
-      "size_bytes": 2375
+      "sha256": "cd2b6aef2eab540d8926cb7a5fe7f6a9319a5914b03c301cbdd2e964738ca151",
+      "size_bytes": 2504
     },
     {
       "path": "reproduce.py",
-      "sha256": "33add7f0f3ce98969dd95e5d1e6d77b931cd14cdbf7dcf0b1105f8d7031ac222",
-      "size_bytes": 4535
+      "sha256": "30295d88a72bb932fa9efc68cde33f74898e6824d4d46b7a07e87cb6cf966072",
+      "size_bytes": 5162
     },
     {
       "path": "reproduced/audit_2026-09-26/deterministic_results.json",
@@ -289,6 +395,66 @@
       "path": "reproduced/environment.json",
       "sha256": "2878f54eebe01103eadd4aaa12c1aa9bd40017a46aec6169d55ac15566c4b3e7",
       "size_bytes": 165
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/README.md",
+      "sha256": "5a0bce4d992a319487718de184f0ffb174deb2fdf3368a7ec4390c86d7170904",
+      "size_bytes": 531
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/deterministic_stdout.txt",
+      "sha256": "3fdc18ce5765b86b3fb1335de0d6cf077098c6462dbdb9bd00ef1bd01bb65ad2",
+      "size_bytes": 2745
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/environment.json",
+      "sha256": "1b08c811cb5814d99bc90291ffaeb0d1dcda23e77462bed4dd1a261624301ff5",
+      "size_bytes": 2635
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/figure_stdout.txt",
+      "sha256": "3c2583412bc276f0e3edae3cf3fded387d8a8f891356a93caf33a3975a1aac08",
+      "size_bytes": 142
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/graph_figures.txt",
+      "sha256": "bbbb6e1eb75b1e0bbeac0e2cca77dbc108df60515c82e6a7c77d38b1c6baf6fb",
+      "size_bytes": 101
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/graph_stdout.json",
+      "sha256": "92c5119fda34dbe75a0951e0db814d57e003591f7e3f8c0e1afe1287b016a201",
+      "size_bytes": 1778
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/graph_tests.txt",
+      "sha256": "15b5e7b5b57d3beedb514eec7c60c56d148b4a30492b7c180b3d6df8d387d9bc",
+      "size_bytes": 36
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/installed_packages.txt",
+      "sha256": "b490d1bf3665a108f9d6e46526299876d7e93433ac982e1a4db48f69f997aaef",
+      "size_bytes": 203
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/legacy_stdout.txt",
+      "sha256": "a0f7c023b146c28df678f9abfa855f7fffc29bbcd875da23c737619e9965e832",
+      "size_bytes": 783
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/numerical_stdout.txt",
+      "sha256": "42e74091e591539935b2d86167a0a4eae2462474babee6798dc9dfda3f8e3d7c",
+      "size_bytes": 3327
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/source_access_stdout.json",
+      "sha256": "4be349cddfe0a8fd6810dafe5f8ce8eb2207b24403b48f1e7e682b1344be6cde",
+      "size_bytes": 2493
+    },
+    {
+      "path": "reproduced/final_integration_2026-09-26/tests.txt",
+      "sha256": "6daa455000596967963da1eee130dca9c5000d85aa752e6e0f92dfec2919fdfe",
+      "size_bytes": 1185
     },
     {
       "path": "reproduced/numerical_results.txt",

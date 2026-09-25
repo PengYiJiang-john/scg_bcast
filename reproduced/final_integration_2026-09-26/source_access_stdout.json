@@ -1,0 +1,79 @@
+{
+  "audit_kind": "offline_reaggregation_of_archived_outputs_not_independent_LLM_replication",
+  "observed_runs": 120,
+  "saved_generation_step_outputs": 720,
+  "matched_raw_judge_responses": 120,
+  "matched_terminal_scores": 120,
+  "judge_models": {
+    "models/gemini-2.5-pro": 120
+  },
+  "base_cases": [
+    "finance_cashflow",
+    "legal_deadline",
+    "privacy_retention",
+    "product_recall",
+    "scifact_105"
+  ],
+  "workflows": [
+    "ctrl_chain_6",
+    "ctrl_dense_6",
+    "ctrl_memory_6",
+    "ctrl_parallel_6",
+    "ctrl_star_6",
+    "ctrl_tree_6"
+  ],
+  "condition_summary": [
+    {
+      "condition": "source_visible",
+      "case_workflow_count": 30,
+      "base_case_count": 5,
+      "workflows_per_case": 6,
+      "mean_false_semantic_intensity": 0.1
+    },
+    {
+      "condition": "source_deemphasized",
+      "case_workflow_count": 30,
+      "base_case_count": 5,
+      "workflows_per_case": 6,
+      "mean_false_semantic_intensity": 0.46
+    },
+    {
+      "condition": "source_pointer_only",
+      "case_workflow_count": 30,
+      "base_case_count": 5,
+      "workflows_per_case": 6,
+      "mean_false_semantic_intensity": 0.9933333333333334
+    },
+    {
+      "condition": "source_absent",
+      "case_workflow_count": 30,
+      "base_case_count": 5,
+      "workflows_per_case": 6,
+      "mean_false_semantic_intensity": 0.98
+    }
+  ],
+  "successful_raw_json_parses": 120,
+  "terminal_judge_errors": 0,
+  "uncertainty_status": "No confidence intervals were computed. Source ci_low/ci_high are point-score placeholders; bootstrap_samples=0.",
+  "generation_model": null,
+  "generation_configuration": null,
+  "execution_dates": null,
+  "missing_metadata": [
+    "exact generation model",
+    "generation/judge runtime settings",
+    "historical source commit",
+    "run dates",
+    "provider request IDs",
+    "token usage",
+    "complete retry counts",
+    "random seeds"
+  ],
+  "limitations": [
+    "Five base cases, not 30 independent cases per condition; one saved trace per design cell.",
+    "Conditions are prompt manipulations: deemphasized includes corrective text in the actual input.",
+    "Workflow dependency graphs are prescribed; this does not validate recovered semantic-source graphs.",
+    "One LLM judge per final output; no human calibration or repeated-judge uncertainty.",
+    "Medical role templates were reused in nonmedical domains.",
+    "No new model execution, causal responsibility evaluation, or incentive experiment was performed."
+  ]
+}

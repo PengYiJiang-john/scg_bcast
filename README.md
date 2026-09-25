@@ -14,8 +14,17 @@ This repository accompanies a draft on semantic behavioral accountability. It co
 | E2 misleading behavior and remediation | Draft protocol | Not executed; eligible sample count and replay budget remain undetermined |
 | E3 mode selection | Draft protocol and planned configuration | Not executed; first-layer behavioral penalties only, no final SSV incentive validation |
 | Historical source-access means | 120 traces and 120 raw direct-judge responses, verified joins and reaggregation | Recovered descriptive output archive; exact generation runtime metadata incomplete |
+| Historical propagation graph audit | 120 H22 and 20 earlier SciFact traces, workflow and legacy rule graph metrics, examples | New post hoc analysis of archived outputs; legacy extraction has documented semantic errors |
 
 The 2026-09-26 audit reran the supplied numerical code after source inspection. The initial ZIPs supplied only four historical means; the subsequent local recovery found their underlying H22 records and reproduced all four means. Each condition has five base cases times six workflow structures, not thirty independent samples. See `archive/source_access/README.md` for the records and remaining limits; exact generation model/settings/dates are not recoverable from the saved traces.
+
+## What the old propagation graphs establish
+
+The old propagation experiments were located. `analysis/propagation_graphs/` recomputes structural metrics separately for the prescribed workflow DAG and the archived rule-detected active graph. Only links whose two endpoints are active are counted as continuing-error links. Empty and singleton graphs are reported separately from nontrivial chains.
+
+Of the 120 H22 rule graphs, 51 are empty, 18 are singletons, 6 are nontrivial single chains, 29 are disconnected, and 16 are connected with branching or merging. Thus 6 of the 51 graphs with at least two active nodes are **strict** single chains. This is not a near-chain rate: no approximation threshold was preregistered, and the legacy labels are not verified semantic ground truth. The 20 earlier SciFact rule graphs contain 11 empty graphs, 8 singletons, and one connected merging graph.
+
+Text inspection found a six-step Chinese trajectory that retains the target error while every step is labelled absent, and an English denial labelled as active propagation. A separate six-step tree example retains the erroneous claim on both branches before merging, with longest-path coverage 4/6. Those input-dependency edges do not establish that both branches are causally necessary. Accordingly, these archives cannot establish that real error propagation is generally near-chain. Prefix-intensity scores describe the cumulative system state and are not local node or edge truth labels. See the module README, metric definitions, per-run results, and selected text checks for the precise scope.
 
 ## Reproduce the available numerical checks
 
@@ -28,7 +37,7 @@ python -m pip install -r requirements.txt
 python reproduce.py
 ```
 
-`reproduce.py` writes to `reproduced/local/`, leaving the archived and dated audit outputs intact. It runs the unmodified legacy LP, the audited LP, the exact deterministic calculation, seven independent test cases, and the figure generator. It saves raw stdout, both complete LP witness tables, numerical summaries, test output, environment information, source hashes, and installed package versions. It also recomputes the recovered H22 archive entirely offline and checks archived versus fresh legacy output numerically (tolerance `1e-8`). There are no fresh random simulations or model calls in this suite; historical model outputs are read as archived data.
+`reproduce.py` writes to `reproduced/local/`, leaving the archived and dated audit outputs intact. It runs the unmodified legacy LP, the audited LP, the exact deterministic calculation, seven independent numerical test cases, graph metric fixtures, and figure generators. It saves raw stdout, both complete LP witness tables, numerical summaries, test output, environment information, source hashes, and installed package versions. It also recomputes the recovered H22 archive and post hoc graph metrics entirely offline and checks archived versus fresh legacy LP output numerically (tolerance `1e-8`). There are no fresh random simulations or model calls in this suite; historical model outputs are read as archived data.
 
 Individual commands:
 
@@ -37,6 +46,8 @@ python verification/verify_span_bound.py --output-dir reproduced/local
 python illustrative_example/deterministic_example.py --output reproduced/local/deterministic_results.json
 python -m unittest discover -s tests -v
 python illustrative_example/make_counterfactual_overview.py --output-dir reproduced/local/figures
+python analysis/propagation_graphs/analyze.py --self-test
+python analysis/propagation_graphs/analyze.py --output-dir reproduced/local/propagation_graphs
 ```
 
 GitHub Actions is configured in `.github/workflows/verify.yml` to execute the same scientific checks on Linux. The checked-in local audit does not certify a future remote Actions run.
@@ -75,11 +86,13 @@ The support functions are illustrative assumptions, not inferred causal provenan
 - `provenance/legacy_make_counterfactual_overview.py`: byte-preserved original figure script.
 - `illustrative_example/deterministic_example.py`: added executable toy transitions and exact arithmetic.
 - `reproduced/audit_2026-09-26/`: results actually generated in this audit, including tests and source hashes.
+- `reproduced/final_integration_2026-09-26/`: successful final offline integration logs, including graph checks; freshly computed graph tables match the published analysis tables byte-for-byte.
 - `reproduced/numerical_results.txt` and `reproduced/environment.json`: prior reproduction files supplied in the archive, not this audit's environment.
 - `provenance/original_manifest.json`: original manifest, retained as a historical claim. Its source-archive name and library ID were supplied metadata, not independently authenticated.
 - `manifest.json`: current package hashes and evidence classifications. It excludes itself, virtual environments, caches, and local reruns.
 - `archived_observations/`: original four-row historical CSV and a link to recovered provenance.
 - `archive/source_access/`: recovered raw H22 traces/judgments, source hashes, offline reaggregation, and limitations.
+- `analysis/propagation_graphs/`: post hoc graph metrics on archived H22 and earlier SciFact outputs, diagnostic examples, additional source hashes, and explicit extraction limits.
 - `protocols/LLM_EXPERIMENT_PROTOCOL.md` and `configs/planned_experiments.json`: draft study plans, not implemented experiments or frozen runtime assets. Manuscript LaTeX excerpts are retained locally but excluded from the GitHub experiment release.
 
 ## LLM plan and remaining implementation work

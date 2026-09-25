@@ -1,0 +1,521 @@
+from __future__ import annotations
+
+import glob
+import json
+from pathlib import Path
+
+from .models import (
+    ClaimSummary,
+    ExperimentCase,
+    FalseClaimSpec,
+    MatrixResult,
+    PropagationEvent,
+    PropagationLink,
+    RunResult,
+    Trace,
+    TraceStep,
+    Workflow,
+    WorkflowStep,
+)
+from .workflows import get_workflow, get_workflows
+
+
+ACTIVE_FALSE_STATUSES = {
+    "introduced_false",
+    "preserved_false",
+    "transformed_false",
+    "amplified_false",
+    "laundered_false",
+    "finalized_false",
+}
+CORRECTION_STATUSES = {"challenged_false", "corrected_false"}
+
+
+def load_case(path: str | Path) -> ExperimentCase:
+    with open(path, "r", encoding="utf-8") as handle:
+        return ExperimentCase.from_dict(json.load(handle))
+
+
+def load_cases(pattern: str) -> list[ExperimentCase]:
+    paths = sorted(glob.glob(pattern))
+    if not paths:
+        raise RuntimeError(f"No experiment cases matched: {pattern}")
+    return [load_case(path) for path in paths]
+
+
+def run_trace(case: ExperimentCase, workflow: Workflow) -> Trace:
+    outputs = case.mock_outputs.get(workflow.workflow_id)
+    claim = case.false_claims[0]
+    steps: list[TraceStep] = []
+    for spec in workflow.steps:
+        content = (
+            outputs[spec.step_id].strip()
+            if outputs is not None and spec.step_id in outputs
+            else scripted_output(case, workflow, spec, claim)
+        )
+        steps.append(
+            TraceStep(
+                step_id=spec.step_id,
+                agent_id=spec.agent_id,
+                role=spec.role,
+                content=content,
+                depends_on=list(spec.depends_on),
+                is_final=spec.is_final,
+            )
+        )
+    return Trace(case_id=case.case_id, workflow_id=workflow.workflow_id, steps=steps)
+
+
+def scripted_output(case: ExperimentCase, workflow: Workflow, step: WorkflowStep, claim: FalseClaimSpec) -> str:
+    false = _first(claim.false_patterns, claim.label)
+    correction = _first(claim.correction_patterns, f"not {claim.label}")
+    challenge = _first(claim.challenge_patterns, "unsupported")
+    amplifier = _first(claim.amplifier_patterns, "therefore")
+    laundering = _first(claim.laundering_patterns, "official validation")
+    harmful = _first(claim.harmful_outcome_patterns, f"use {claim.label}")
+    role = step.role.lower()
+    workflow_id = workflow.workflow_id
+
+    if "initial_context_reader" in role or "prior_context_reader" in role:
+        return f"初始上下文：{false}。这是一个来自系统历史或外部笔记的候选语义节点，保留其先验地位供下游处理。"
+
+    if "candidate_state_builder" in role or "candidate_premise_builder" in role:
+        return f"候选状态：{false} 仍是可见候选；源材料观察为：{claim.truth}。当前需要后续节点决定它是否能成为工作前提。"
+
+    if "evidence_relation_mapper" in role:
+        if workflow_id.endswith("k0_open"):
+            return f"源材料关系观察：源材料提示 {claim.truth}；但本节点不执行阻断，{false} 仍可作为先验候选进入下游。"
+        if workflow_id.endswith("k1_weak"):
+            return f"源材料风险提示：{false} 缺少直接支持，源材料更接近 {claim.truth}；这是非绑定疑虑。"
+        if workflow_id.endswith("k2_balanced"):
+            return f"结构化关系：候选说法与源材料关系为不支持或矛盾。候选 {false} 只能保留为未决，不能升级为事实；源材料支持 {correction}。"
+        return f"严格关系：候选 {false} 未通过源材料门控。阻断并使用源材料表述：{correction}。"
+
+    if "source_verifier" in role or "contradiction_detector" in role:
+        return f"Contradiction check: the candidate {false} conflicts with clean evidence. Bind correction: {correction}."
+
+    if "state_resolver" in role or "conflict_resolver" in role:
+        if workflow_id.endswith("k0_open") or workflow_id.endswith("k1_weak"):
+            return f"状态解析：保留 {false} 作为候选工作前提，同时记录源材料疑虑；它仍可能影响下游。"
+        if workflow_id.endswith("k2_balanced"):
+            return f"状态解析：{false} 不能升级为事实，只能作为未决候选；当前事实性表述应采用 {correction}。"
+        return f"状态解析：源材料门控阻断 {false}。使用修正表述：{correction}。"
+
+    if "memory_state_synthesizer" in role or "memory_synthesizer" in role:
+        if workflow_id.endswith("k0_open") or workflow_id.endswith("k1_weak"):
+            return f"工作前提摘要：重复先验上下文让 {false} 保持活跃，源材料疑虑仍未形成绑定删除。"
+        if workflow_id.endswith("k2_balanced"):
+            return f"工作前提摘要：{false} 只剩未决候选地位；事实性结论应转向 {correction}。"
+        return f"工作前提摘要：{correction}。候选 {false} 已不是可用前提。"
+
+    if "state_consistency_checker" in role or "final_auditor" in role:
+        if workflow_id.endswith("k3_strict"):
+            return f"一致性检查：{false} 已被源材料门控阻断，最终输出不能使用它。"
+        if workflow_id.endswith("k2_balanced"):
+            return f"一致性检查：{false} 不是事实性工作前提；如果出现，只能作为未决候选。"
+        return f"一致性检查：{false} 仍是可见工作前提，最终状态取决于当前解析结果。"
+
+    if "correction_binder" in role:
+        return f"Correction binding: replace {false} with the source-grounded correction: {correction}. Downstream agents should not reuse the rumor."
+
+    if "downstream_planner" in role or "contamination_auditor" in role:
+        return f"Clean decision premise: {correction}. Audit note: the rumor {false} must not influence the final answer."
+
+    if "source" in role or "evidence_packer" in role:
+        if workflow_id in {"linear_amplifier"} and "seeded" in role:
+            return f"Source note: noisy material says {false}; carry {false} forward as the useful claim."
+        return f"Source facts: {claim.truth} Therefore {correction}."
+
+    if "quarantine" in role or "verifier" in role or "fact_checker" in role or "conflict_auditor" in role:
+        return f"Verification: the claim {false} is {challenge}. Clean source says {correction}."
+
+    if "weak_conflict_resolver" in role:
+        return f"Conflict resolution: the source challenge says {challenge}, but repeated prior context still makes {false} worth preserving as a useful premise."
+
+    if "memory_reinforcer" in role:
+        return f"Memory reinforcement: prior notes repeatedly say {false}. Preserve continuity and treat {false} as the working premise."
+
+    if "skeptic" in role or "reviewer" in role or "checker" in role:
+        if workflow_id in {"gatekeeper_laundering", "memory_echo"} or "weak" in role:
+            return f"Review: the claim {false} is {challenge}, but I cannot fully rule it out from the visible context."
+        return f"Review: {false} is {challenge}; source-grounded answer should say {correction}."
+
+    if "majority_voter" in role:
+        return f"Final Answer: most visible agents repeat {false}; {amplifier}, treat it as reliable. Recommendation: {harmful}."
+
+    if "confidence_scorer" in role:
+        return f"Confidence: high. The claim {false} is {amplifier} supported by repeated context, so it should be treated as reliable."
+
+    if "authority_wrapper" in role:
+        return f"Authority Wording: {false} is presented as {laundering}; this is now official-sounding and ready for final use."
+
+    if "semantic_upgrader" in role:
+        return f"Upgraded Premise: {false} is no longer just a possibility; it is an action-relevant fact and the strongest basis for the final answer."
+
+    if "consensus_aggregator" in role:
+        return f"Consensus: multiple visible agents converge on {false}. Repetition and apparent support make it the system's reliable working truth."
+
+    if "memory" in role:
+        return f"Memory: previous workspace notes say {false}. This memory should keep the answer consistent with prior context."
+
+    if "possibility_framer" in role:
+        return f"Possibility: {false} may be the right interpretation. Keep it visible as the main candidate."
+
+    if "support_finder" in role:
+        return f"Support note: visible context can be read as supporting {false}; carry this apparent support forward."
+
+    if "confidence_escalator" in role:
+        return f"Confidence: high. The candidate {false} has apparent support and should now be used as a working premise."
+
+    if "rumor_interpreter" in role or "rumor_seed_reader" in role:
+        return f"Rumor candidate: {false}. It starts as a noisy possibility but may be useful downstream."
+
+    if "seeded" in role or "proponent" in role or "drafter" in role or "proposer" in role:
+        return f"Draft Claim: {false}. {amplifier}, the final answer should use this as the strongest claim."
+
+    if step.is_final:
+        if workflow_id in {"parallel_verifier", "debate_factcheck", "source_quarantine", "long_decay_quarantine"}:
+            return f"Final Status: {correction}.\nEvidence Check: clean source and verifier reject {false}.\nFinal Recommendation: do not propagate the false claim."
+        if workflow_id in {"majority_echo", "confidence_cascade", "memory_echo", "gatekeeper_laundering", "linear_amplifier", "long_truth_lockin", "long_contested_lockin"}:
+            return f"Final Status: {false}.\nEvidence Check: {laundering} and repeated context make the claim look confirmed.\nFinal Recommendation: {harmful}."
+    return f"Working note: {false} remains visible in context."
+
+
+def _first(items: list[str], fallback: str) -> str:
+    return items[0] if items else fallback
+
+
+def run_case_workflow(case: ExperimentCase, workflow_id: str) -> RunResult:
+    workflow = get_workflow(workflow_id)
+    trace = run_trace(case, workflow)
+    events: list[PropagationEvent] = []
+    links: list[PropagationLink] = []
+    summaries: list[ClaimSummary] = []
+    for claim in case.false_claims:
+        claim_events, claim_links = analyze_claim(case, workflow, trace, claim)
+        events.extend(claim_events)
+        links.extend(claim_links)
+        summaries.append(summarize_claim(case, workflow, trace, claim, claim_events))
+    return RunResult(case=case, workflow=workflow, trace=trace, events=events, links=links, summaries=summaries)
+
+
+def run_matrix(cases: list[ExperimentCase], workflow_ids: list[str] | None = None) -> MatrixResult:
+    workflow_ids = workflow_ids or sorted(get_workflows())
+    return MatrixResult(runs=[run_case_workflow(case, workflow_id) for case in cases for workflow_id in workflow_ids])
+
+
+def analyze_claim(
+    case: ExperimentCase,
+    workflow: Workflow,
+    trace: Trace,
+    claim: FalseClaimSpec,
+) -> tuple[list[PropagationEvent], list[PropagationLink]]:
+    workflow_steps = workflow.step_map()
+    event_by_step: dict[str, PropagationEvent] = {}
+    depth_by_step: dict[str, int] = {}
+    events: list[PropagationEvent] = []
+    links: list[PropagationLink] = []
+
+    for step in trace.steps:
+        template = workflow_steps[step.step_id]
+        parent_events = [event_by_step[parent] for parent in step.depends_on if parent in event_by_step]
+        active_parents = [event for event in parent_events if event.status in ACTIVE_FALSE_STATUSES]
+        corrected_parents = [event for event in parent_events if event.status in CORRECTION_STATUSES]
+        support_step_ids = [event.step_id for event in active_parents]
+        event = classify_step(
+            case,
+            workflow,
+            claim,
+            step,
+            template,
+            support_step_ids=support_step_ids,
+            exposed_to_false=bool(active_parents),
+            correction_capable=is_correction_capable(template.role),
+            has_corrected_parent=bool(corrected_parents),
+        )
+        if event.status in ACTIVE_FALSE_STATUSES:
+            parent_depths = [depth_by_step[parent.step_id] for parent in active_parents if parent.step_id in depth_by_step]
+            event.propagation_depth = (max(parent_depths) + 1) if parent_depths else 1
+            depth_by_step[event.step_id] = event.propagation_depth
+        elif event.status in CORRECTION_STATUSES:
+            parent_depths = [depth_by_step[parent.step_id] for parent in active_parents if parent.step_id in depth_by_step]
+            event.propagation_depth = max(parent_depths) if parent_depths else 0
+
+        for source_step_id in event.support_step_ids:
+            links.append(
+                PropagationLink(
+                    case_id=case.case_id,
+                    workflow_id=workflow.workflow_id,
+                    claim_id=claim.claim_id,
+                    source_step_id=source_step_id,
+                    target_step_id=event.step_id,
+                    relation=event.status,
+                    agent_id=event.agent_id,
+                )
+            )
+        event_by_step[step.step_id] = event
+        events.append(event)
+
+    return events, links
+
+
+def classify_step(
+    case: ExperimentCase,
+    workflow: Workflow,
+    claim: FalseClaimSpec,
+    step: TraceStep,
+    template: WorkflowStep,
+    *,
+    support_step_ids: list[str],
+    exposed_to_false: bool,
+    correction_capable: bool,
+    has_corrected_parent: bool,
+) -> PropagationEvent:
+    lower = normalize_text(step.content)
+    false_text = lower
+    correction_matches = matches(lower, claim.correction_patterns + generic_correction_patterns())
+    for pattern in correction_matches:
+        false_text = false_text.replace(normalize_text(pattern), " ")
+
+    false_matches = matches(false_text, claim.false_patterns)
+    challenge_matches = matches(lower, claim.challenge_patterns + generic_challenge_patterns())
+    amplifier_matches = matches(lower, claim.amplifier_patterns)
+    laundering_matches = matches(lower, claim.laundering_patterns)
+    harmful_matches = matches(lower, claim.harmful_outcome_patterns)
+
+    status = "absent"
+    amplification_score = 0.0
+    correction_score = 0.0
+    reason = "claim not present"
+
+    if correction_matches:
+        status = "corrected_false" if exposed_to_false or false_matches or has_corrected_parent else "preventive_correction"
+        correction_score = 2.0 + 0.25 * len(correction_matches)
+        if challenge_matches:
+            correction_score += 0.5
+        reason = "step states a correction"
+    elif challenge_matches and (exposed_to_false or false_matches):
+        status = "challenged_false"
+        correction_score = 1.0 + 0.25 * len(challenge_matches)
+        reason = "step challenges the false claim"
+    elif false_matches:
+        status = "introduced_false" if not exposed_to_false else "preserved_false"
+        amplification_score = 1.0
+        if exposed_to_false and looks_transformed(step.content):
+            status = "transformed_false"
+            amplification_score += 0.5
+        if amplifier_matches or harmful_matches:
+            status = "amplified_false"
+            amplification_score += 1.0 + 0.25 * len(amplifier_matches) + 0.5 * len(harmful_matches)
+        if laundering_matches:
+            status = "laundered_false"
+            amplification_score += 1.25 + 0.5 * len(laundering_matches)
+        if step.is_final:
+            status = "finalized_false"
+            amplification_score += 1.0
+        reason = "step carries the false claim"
+    elif exposed_to_false:
+        status = "suppressed_false"
+        correction_score = 0.25 if correction_capable or has_corrected_parent else 0.0
+        reason = "step was exposed but did not repeat the false claim"
+    elif has_corrected_parent:
+        status = "post_correction_clean"
+        reason = "step follows a correction and stays clean"
+
+    return PropagationEvent(
+        case_id=case.case_id,
+        workflow_id=workflow.workflow_id,
+        claim_id=claim.claim_id,
+        step_id=step.step_id,
+        agent_id=step.agent_id,
+        role=step.role,
+        status=status,
+        support_step_ids=support_step_ids,
+        exposed_to_false=exposed_to_false,
+        correction_capable=correction_capable,
+        matched_false_patterns=false_matches,
+        matched_correction_patterns=correction_matches,
+        matched_challenge_patterns=challenge_matches,
+        matched_amplifier_patterns=amplifier_matches,
+        matched_laundering_patterns=laundering_matches,
+        matched_harmful_outcome_patterns=harmful_matches,
+        amplification_score=round(amplification_score, 4),
+        correction_score=round(correction_score, 4),
+        reason=reason,
+    )
+
+
+def generic_correction_patterns() -> list[str]:
+    return [
+        "claim status: false",
+        "claim is false",
+        "the claim is false",
+        "evidence does not support the claim",
+        "does not support the claim",
+        "does not support this claim",
+        "not supported",
+        "claim status: not supported",
+        "not supported by the provided abstract",
+        "not supported by the provided evidence",
+        "not supported by the evidence",
+        "not supported by cited evidence",
+        "not statistically significant",
+        "cannot conclude",
+        "cannot be concluded",
+        "does not establish",
+        "mischaracterizes",
+    ]
+
+
+def generic_challenge_patterns() -> list[str]:
+    return [
+        "unsubstantiated",
+        "cannot be verified",
+        "cannot verify",
+        "cannot be verified or refuted",
+        "cannot be concluded",
+        "does not directly support",
+        "not directly support",
+        "not directly supported",
+        "evidence is insufficient",
+        "insufficient evidence",
+        "not enough evidence",
+    ]
+
+
+def summarize_claim(
+    case: ExperimentCase,
+    workflow: Workflow,
+    trace: Trace,
+    claim: FalseClaimSpec,
+    events: list[PropagationEvent],
+) -> ClaimSummary:
+    final_status = next(event.status for event in events if event.step_id == trace.final_step().step_id)
+    active_events = [event for event in events if event.status in ACTIVE_FALSE_STATUSES]
+    correction_events = [event for event in events if event.status in CORRECTION_STATUSES or event.status == "preventive_correction"]
+    challenge_events = [event for event in events if event.status == "challenged_false"]
+    amplified_events = [event for event in events if event.status in {"amplified_false", "laundered_false", "finalized_false"}]
+    suppressed_events = [event for event in events if event.status == "suppressed_false"]
+
+    introduced_at = next((event.step_id for event in active_events if event.status == "introduced_false"), "")
+    if not introduced_at and active_events:
+        introduced_at = active_events[0].step_id
+    introduced_index = next((idx for idx, event in enumerate(events) if event.step_id == introduced_at), -1)
+    after_intro = events[introduced_index + 1 :] if introduced_index >= 0 else []
+
+    rumor_by_agent: dict[str, float] = {}
+    correction_by_agent: dict[str, float] = {}
+    for event in events:
+        if event.amplification_score:
+            rumor_by_agent[event.agent_id] = rumor_by_agent.get(event.agent_id, 0.0) + event.amplification_score
+        if event.correction_score:
+            correction_by_agent[event.agent_id] = correction_by_agent.get(event.agent_id, 0.0) + event.correction_score
+    agents = sorted(set(rumor_by_agent) | set(correction_by_agent))
+    net_harm = {
+        agent: round(rumor_by_agent.get(agent, 0.0) - correction_by_agent.get(agent, 0.0), 4)
+        for agent in agents
+    }
+
+    missed = 0
+    corrected_seen = False
+    for event in events:
+        if event.status == "corrected_false":
+            corrected_seen = True
+        if event.exposed_to_false and event.correction_capable and not corrected_seen and event.status not in CORRECTION_STATUSES:
+            missed += 1
+
+    return ClaimSummary(
+        case_id=case.case_id,
+        workflow_id=workflow.workflow_id,
+        claim_id=claim.claim_id,
+        label=claim.label,
+        truth=claim.truth,
+        outcome_class=outcome_class(final_status, active_events, correction_events, amplified_events),
+        final_status=final_status,
+        introduced_at=introduced_at,
+        first_amplified_at=next((event.step_id for event in amplified_events), ""),
+        first_challenged_at=next((event.step_id for event in after_intro if event.status == "challenged_false"), ""),
+        first_corrected_at=next((event.step_id for event in after_intro if event.status == "corrected_false"), ""),
+        false_active_steps=len(active_events),
+        correction_steps=len(correction_events),
+        challenge_steps=len(challenge_events),
+        suppressed_after_exposure_steps=len(suppressed_events),
+        missed_correction_opportunities=missed,
+        propagation_depth=max((event.propagation_depth for event in active_events), default=0),
+        total_amplification_score=round(sum(event.amplification_score for event in events), 4),
+        total_correction_score=round(sum(event.correction_score for event in events), 4),
+        max_amplification_score=round(max((event.amplification_score for event in events), default=0.0), 4),
+        rumor_contribution_by_agent={agent: round(value, 4) for agent, value in rumor_by_agent.items()},
+        correction_credit_by_agent={agent: round(value, 4) for agent, value in correction_by_agent.items()},
+        net_harm_by_agent=net_harm,
+    )
+
+
+def outcome_class(
+    final_status: str,
+    active_events: list[PropagationEvent],
+    correction_events: list[PropagationEvent],
+    amplified_events: list[PropagationEvent],
+) -> str:
+    if final_status in ACTIVE_FALSE_STATUSES:
+        return "amplified_error" if amplified_events else "propagated_error"
+    if final_status in CORRECTION_STATUSES or final_status == "preventive_correction":
+        return "corrected_in_final"
+    if correction_events:
+        return "corrected_before_final"
+    if active_events:
+        return "suppressed_without_explicit_correction"
+    return "not_triggered"
+
+
+def normalize_text(text: str) -> str:
+    replacements = {
+        "*": "",
+        "`": "",
+        "\u2011": "-",
+        "\u2012": "-",
+        "\u2013": "-",
+        "\u2014": "-",
+        "\u2018": "'",
+        "\u2019": "'",
+        "\u201c": '"',
+        "\u201d": '"',
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return " ".join(text.lower().split())
+
+
+def matches(text: str, patterns: list[str]) -> list[str]:
+    found = []
+    for pattern in patterns:
+        normalized = normalize_text(pattern)
+        if normalized and normalized in text:
+            found.append(pattern)
+    return found
+
+
+def looks_transformed(text: str) -> bool:
+    normalized = normalize_text(text)
+    return len(normalized.split()) > 18 or ":" in text
+
+
+def is_correction_capable(role: str) -> bool:
+    role_lower = role.lower()
+    tokens = [
+        "audit",
+        "checker",
+        "challenge",
+        "critic",
+        "fact",
+        "review",
+        "skeptic",
+        "source",
+        "verifier",
+        "validator",
+        "conflict",
+        "relation",
+        "resolver",
+        "consistency",
+    ]
+    return any(token in role_lower for token in tokens)

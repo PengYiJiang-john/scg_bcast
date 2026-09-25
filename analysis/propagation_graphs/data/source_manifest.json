@@ -1,0 +1,56 @@
+{
+  "kind": "posthoc_graph_analysis_inputs",
+  "recovered_on": "2026-09-26",
+  "files": [
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/gemini_live_matrix_5case_v2_reanalyzed/matrix.json",
+      "analysis_path": "data/scifact_legacy_matrix.json",
+      "sha256": "fc9f5d1df896d25bf98742ea8f0ecc91eca31e63259dbd92bd50a0538302b855",
+      "size_bytes": 271415
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_direct_flash_v2/direct_judgments.jsonl",
+      "analysis_path": "data/h22_flash_step_judgments.jsonl",
+      "sha256": "9706564af54d558cb8cb66de870b56066f0c7999ae8cf7baf5239a543706a08c",
+      "size_bytes": 595342
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "outputs/generalization_h21/h22_direct_flash_v2/intensity_scores.json",
+      "analysis_path": "data/h22_flash_step_scores.json",
+      "sha256": "fa72500674f1f9cf505afb4fff7d611a3a394d23a3e0a3701fe38a87dea2666e",
+      "size_bytes": 1355569
+    },
+    {
+      "source_project": "scg_rumor_propagation",
+      "source_relative_path": "src/scg_rumor/engine.py",
+      "analysis_path": "data/legacy_engine_snapshot.py.txt",
+      "sha256": "37d3d68e98c974a7266541f72bc676851743d671a14c4996dca1bec2871e0f0b",
+      "size_bytes": 23305
+    },
+    {
+      "source_project": "current_experiment_archive",
+      "source_relative_path": "archive/source_access/raw/runs.jsonl",
+      "analysis_path": "../../archive/source_access/raw/runs.jsonl",
+      "sha256": "b504235a567a0845c058802ea13ca20a6e99ddc2fcf5ec1281992e95ed76ed04",
+      "size_bytes": 1274061
+    },
+    {
+      "source_project": "current_experiment_archive",
+      "source_relative_path": "archive/source_access/raw/direct_judgments.jsonl",
+      "analysis_path": "../../archive/source_access/raw/direct_judgments.jsonl",
+      "sha256": "39cd7ff34bae00da0c11a16c20bfb94abeeb637268c68cc1ee47bdb4e5c75ffc",
+      "size_bytes": 97898
+    },
+    {
+      "source_project": "current_experiment_archive",
+      "source_relative_path": "archive/source_access/raw/intensity_scores.json",
+      "analysis_path": "../../archive/source_access/raw/intensity_scores.json",
+      "sha256": "d6d30e9fdbbed4259a487ab698f2153a6811f55ec10f35105deb761ecf5bbbe8",
+      "size_bytes": 239402
+    }
+  ],
+  "credential_scan": "Selected files scanned for common API tokens and private keys: no matches. Environment files were not read or copied."
+}

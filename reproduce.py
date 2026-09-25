@@ -31,6 +31,9 @@ def main():
         ("deterministic_stdout.txt", ["illustrative_example/deterministic_example.py", "--output", str(output_arg / "deterministic_results.json")]),
         ("tests.txt", ["-m", "unittest", "discover", "-s", "tests", "-v"]),
         ("source_access_stdout.json", ["archive/source_access/recompute.py", "--output-dir", str(output_arg / "source_access")]),
+        ("graph_tests.txt", ["analysis/propagation_graphs/analyze.py", "--self-test"]),
+        ("graph_stdout.json", ["analysis/propagation_graphs/analyze.py", "--output-dir", str(output_arg / "propagation_graphs")]),
+        ("graph_figures.txt", ["analysis/propagation_graphs/plot_examples.py", "--input-dir", str(output_arg / "propagation_graphs"), "--output-dir", str(output_arg / "propagation_graphs/figures")]),
         ("figure_stdout.txt", ["illustrative_example/make_counterfactual_overview.py", "--output-dir", str(output_arg / "figures")]),
     ]
     statuses = []
@@ -60,7 +63,9 @@ def main():
                     "illustrative_example/deterministic_example.py",
                     "illustrative_example/make_counterfactual_overview.py",
                     "tests/test_verification.py", "configs/planned_experiments.json", "requirements.txt",
-                    "archive/source_access/recompute.py", "archive/source_access/source_manifest.json"]
+                    "archive/source_access/recompute.py", "archive/source_access/source_manifest.json",
+                    "analysis/propagation_graphs/analyze.py", "analysis/propagation_graphs/plot_examples.py",
+                    "analysis/propagation_graphs/data/source_manifest.json"]
     environment = {
         "run_finished_utc": datetime.now(timezone.utc).isoformat(),
         "python": platform.python_version(), "implementation": platform.python_implementation(),
@@ -70,7 +75,7 @@ def main():
         "jobs": statuses,
         "archive_comparison_max_absolute_difference": maximum_difference,
         "comparison_tolerance": 1e-8,
-        "result_scope": "finite numerical constructions, exact toy arithmetic, and offline historical H22 reaggregation; no new LLM runs",
+        "result_scope": "finite numerical constructions, exact toy arithmetic, offline H22 reaggregation and post hoc archived graph metrics; no new LLM runs",
     }
     (out / "environment.json").write_text(json.dumps(environment, indent=2)+"\n")
     freeze = subprocess.run([sys.executable, "-m", "pip", "freeze"], text=True, capture_output=True, check=True)

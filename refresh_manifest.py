@@ -44,6 +44,7 @@ def main():
         'llm_experiments_E1_E2_E3_status': 'planned_not_executed',
         'numerical_status': 'locally_rerun_with_complete_constructed_witness_tables',
         'historical_H22_status': 'archived_raw_responses_recovered_and_reaggregated; generator_metadata_incomplete',
+        'propagation_graph_status': 'posthoc_metrics_on_prescribed_workflows_and_legacy_rule_labels; not_semantic_ground_truth',
         'release_excludes': ['protocols/latex/', '.venv/', '.git/', '__pycache__/', 'reproduced/local/'],
         'notes': 'This manifest is a file-integrity inventory, not a certificate of empirical or theoretical validity.',
         'files': rows,

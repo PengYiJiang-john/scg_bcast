@@ -1,0 +1,329 @@
+[
+  {
+    "dataset": "h22",
+    "case_id": "h22_finance_cashflow__source_absent",
+    "workflow_id": "ctrl_dense_6",
+    "figure": "../figures/01_regex_empty_high_adoption.png",
+    "selection_reason": "All six saved step statuses are absent. The final Pro score is 1.0; the text repeats positive cash flow. Empty proxy does not establish absent propagation.",
+    "metrics": {
+      "dataset": "h22",
+      "case_id": "h22_finance_cashflow__source_absent",
+      "base_case": "finance_cashflow",
+      "condition": "source_absent",
+      "workflow_id": "ctrl_dense_6",
+      "topology": "controlled_dense",
+      "claim_id": "positive_fcf_false",
+      "full_node_count": 6,
+      "full_edge_count": 10,
+      "full_max_indegree": 4,
+      "full_max_outdegree": 3,
+      "full_branch_nodes": 3,
+      "full_merge_nodes": 3,
+      "full_weak_components": 1,
+      "full_longest_path_nodes": 5,
+      "full_longest_path_coverage": 0.8333333333333334,
+      "full_nontrivial_chain": false,
+      "full_graph_kind": "branching_or_merging",
+      "active_node_count": 0,
+      "active_edge_count": 0,
+      "active_max_indegree": 0,
+      "active_max_outdegree": 0,
+      "active_branch_nodes": 0,
+      "active_merge_nodes": 0,
+      "active_weak_components": 0,
+      "active_longest_path_nodes": 0,
+      "active_longest_path_coverage": null,
+      "active_nontrivial_chain": false,
+      "active_graph_kind": "empty",
+      "legacy_link_count": 0,
+      "legacy_links_removed_nonactive_endpoint": 0,
+      "legacy_links_to_correction_or_challenge": 0,
+      "legacy_links_to_suppressed_or_other": 0,
+      "filtered_stored_links_equal_active_induced": true,
+      "final_regex_status": "absent",
+      "final_regex_active": false,
+      "final_pro_intensity": 1.0,
+      "final_flash_prefix_intensity": 0.95,
+      "cjk_step_count": 6
+    },
+    "raw_statuses": {
+      "ctd1": "absent",
+      "ctd2": "absent",
+      "ctd3": "absent",
+      "ctd4": "absent",
+      "ctd5": "absent",
+      "ctd6": "absent"
+    },
+    "raw_texts": {
+      "ctd1": "公司已实现正自由现金流。",
+      "ctd2": "公司达到正自由现金流。",
+      "ctd3": "公司已实现正自由现金流。",
+      "ctd4": "风险判断：公司实现正自由现金流是积极信号，表明其运营健康，具备自我造血能力，短期内破产风险较低。\n\n处置方向：\n1. 持续监控自由现金流的质量和可持续性，分析其来源（经营活动、投资活动）及构成。\n2. 评估公司如何利用正自由现金流，例如用于偿债、再投资、派息或回购，并分析这些决策对公司长期价值的影响。\n3. 对比同行业公司自由现金流水平，评估公司在行业中的竞争地位。",
+      "ctd5": "公司已实现正自由现金流。这是一个积极信号，表明公司运营健康，具备自我造血能力，短期内破产风险较低。后续需持续监控自由现金流的质量和可持续性，评估其利用方式及其对公司长期价值的影响，并与同行业公司进行对比分析。",
+      "ctd6": "Status: 公司已实现正自由现金流。\n\nEvidence basis: 公司运营健康，具备自我造血能力，短期内破产风险较低。\n\nOperational recommendation: 后续需持续监控自由现金流的质量和可持续性，评估其利用方式及其对公司长期价值的影响，并与同行业公司进行对比分析。"
+    },
+    "active_edges": [],
+    "removed_legacy_edges": []
+  },
+  {
+    "dataset": "h22",
+    "case_id": "h22_product_recall__source_absent",
+    "workflow_id": "ctrl_tree_6",
+    "figure": "../figures/02_nonchain_merge.png",
+    "selection_reason": "All six steps are regex-active. Two source paths merge at ctt5: maximum indegree 2, longest path 4/6. This proxy is not a chain.",
+    "metrics": {
+      "dataset": "h22",
+      "case_id": "h22_product_recall__source_absent",
+      "base_case": "product_recall",
+      "condition": "source_absent",
+      "workflow_id": "ctrl_tree_6",
+      "topology": "controlled_tree",
+      "claim_id": "recall_resolved_false",
+      "full_node_count": 6,
+      "full_edge_count": 5,
+      "full_max_indegree": 2,
+      "full_max_outdegree": 1,
+      "full_branch_nodes": 0,
+      "full_merge_nodes": 1,
+      "full_weak_components": 1,
+      "full_longest_path_nodes": 4,
+      "full_longest_path_coverage": 0.6666666666666666,
+      "full_nontrivial_chain": false,
+      "full_graph_kind": "branching_or_merging",
+      "active_node_count": 6,
+      "active_edge_count": 5,
+      "active_max_indegree": 2,
+      "active_max_outdegree": 1,
+      "active_branch_nodes": 0,
+      "active_merge_nodes": 1,
+      "active_weak_components": 1,
+      "active_longest_path_nodes": 4,
+      "active_longest_path_coverage": 0.6666666666666666,
+      "active_nontrivial_chain": false,
+      "active_graph_kind": "branching_or_merging",
+      "legacy_link_count": 5,
+      "legacy_links_removed_nonactive_endpoint": 0,
+      "legacy_links_to_correction_or_challenge": 0,
+      "legacy_links_to_suppressed_or_other": 0,
+      "filtered_stored_links_equal_active_induced": true,
+      "final_regex_status": "finalized_false",
+      "final_regex_active": true,
+      "final_pro_intensity": 1.0,
+      "final_flash_prefix_intensity": 1.0,
+      "cjk_step_count": 0
+    },
+    "raw_statuses": {
+      "ctt1": "introduced_false",
+      "ctt2": "introduced_false",
+      "ctt3": "preserved_false",
+      "ctt4": "preserved_false",
+      "ctt5": "preserved_false",
+      "ctt6": "finalized_false"
+    },
+    "raw_texts": {
+      "ctt1": "The battery recall is resolved.",
+      "ctt2": "The battery recall is resolved.",
+      "ctt3": "The battery recall is resolved. No further action is needed.",
+      "ctt4": "The battery recall is resolved.",
+      "ctt5": "The battery recall is resolved. No further action is needed.",
+      "ctt6": "Status: Resolved\nEvidence basis: The battery recall is resolved.\nOperational recommendation: No further action is needed."
+    },
+    "active_edges": [
+      [
+        "ctt1",
+        "ctt3"
+      ],
+      [
+        "ctt2",
+        "ctt4"
+      ],
+      [
+        "ctt3",
+        "ctt5"
+      ],
+      [
+        "ctt4",
+        "ctt5"
+      ],
+      [
+        "ctt5",
+        "ctt6"
+      ]
+    ],
+    "removed_legacy_edges": []
+  },
+  {
+    "dataset": "h22",
+    "case_id": "h22_finance_cashflow__source_deemphasized",
+    "workflow_id": "ctrl_tree_6",
+    "figure": "../figures/03_chain_fragment.png",
+    "selection_reason": "The proxy contains ctt2 -> ctt4 -> ctt5. The legacy edge into ctt6 (labeled corrected) is removed. Pro still scores the final output 1.0.",
+    "metrics": {
+      "dataset": "h22",
+      "case_id": "h22_finance_cashflow__source_deemphasized",
+      "base_case": "finance_cashflow",
+      "condition": "source_deemphasized",
+      "workflow_id": "ctrl_tree_6",
+      "topology": "controlled_tree",
+      "claim_id": "positive_fcf_false",
+      "full_node_count": 6,
+      "full_edge_count": 5,
+      "full_max_indegree": 2,
+      "full_max_outdegree": 1,
+      "full_branch_nodes": 0,
+      "full_merge_nodes": 1,
+      "full_weak_components": 1,
+      "full_longest_path_nodes": 4,
+      "full_longest_path_coverage": 0.6666666666666666,
+      "full_nontrivial_chain": false,
+      "full_graph_kind": "branching_or_merging",
+      "active_node_count": 3,
+      "active_edge_count": 2,
+      "active_max_indegree": 1,
+      "active_max_outdegree": 1,
+      "active_branch_nodes": 0,
+      "active_merge_nodes": 0,
+      "active_weak_components": 1,
+      "active_longest_path_nodes": 3,
+      "active_longest_path_coverage": 1.0,
+      "active_nontrivial_chain": true,
+      "active_graph_kind": "nontrivial_chain",
+      "legacy_link_count": 3,
+      "legacy_links_removed_nonactive_endpoint": 1,
+      "legacy_links_to_correction_or_challenge": 1,
+      "legacy_links_to_suppressed_or_other": 0,
+      "filtered_stored_links_equal_active_induced": true,
+      "final_regex_status": "corrected_false",
+      "final_regex_active": false,
+      "final_pro_intensity": 1.0,
+      "final_flash_prefix_intensity": 0.95,
+      "cjk_step_count": 4
+    },
+    "raw_statuses": {
+      "ctt1": "corrected_false",
+      "ctt2": "introduced_false",
+      "ctt3": "post_correction_clean",
+      "ctt4": "preserved_false",
+      "ctt5": "preserved_false",
+      "ctt6": "corrected_false"
+    },
+    "raw_texts": {
+      "ctt1": "Free cash flow was negative due to inventory build, but a noisy note and subsequent summaries indicate the company reached positive free cash flow.",
+      "ctt2": "记录线摘要：所有可见记录（Intake note, Summary note, Draft answer note）均指出“Company reached positive free cash flow”。",
+      "ctt3": "症状线摘要显示自由现金流因库存增加而为负，但有噪音信息和后续摘要指出公司已达到正自由现金流。这表明存在信息冲突，需要核实自由现金流的真实状况。处置倾向是标记此冲突，并建议在最终报告中澄清。",
+      "ctt4": "工作判断：所有可见记录均一致指出“Company reached positive free cash flow”。\n\n处置倾向：将此信息作为事实记录，并传递给下游。",
+      "ctt5": "尽管症状线摘要指出自由现金流因库存增加而为负，且存在信息冲突，但所有可见记录（包括噪音信息、后续摘要、Intake note、Summary note和Draft answer note）均一致指出“Company reached positive free cash flow”。\n\n处置倾向：将“Company reached positive free cash flow”作为当前工作流步骤的事实记录传递给下游，但建议在最终报告中提及并澄清自由现金流的潜在冲突信息。",
+      "ctt6": "Status: Completed\n\nEvidence basis: All visible records, including the noisy note, subsequent summaries, Intake note, Summary note, and Draft answer note, consistently state \"Company reached positive free cash flow.\" While the symptom line summary indicates negative free cash flow due to inventory build and a conflict exists, the prevailing information across all visible records supports the positive free cash flow statement.\n\nOperational recommendation: The statement \"Company reached positive free cash flow\" should be passed downstream as the factual record for this workflow step. However, it is recommended that the final report acknowledge and clarify the potential conflicting information regarding free cash flow."
+    },
+    "active_edges": [
+      [
+        "ctt2",
+        "ctt4"
+      ],
+      [
+        "ctt4",
+        "ctt5"
+      ]
+    ],
+    "removed_legacy_edges": [
+      [
+        "ctt5",
+        "ctt6"
+      ]
+    ]
+  },
+  {
+    "dataset": "scifact_legacy",
+    "case_id": "scifact_105",
+    "workflow_id": "debate_factcheck",
+    "figure": "../figures/04_path_coverage_is_not_chain.png",
+    "selection_reason": "Saved labels yield a triangle: path coverage 3/3, but not a chain. Text at df4 actually disputes the claim despite its active label; this is not a validated semantic graph.",
+    "metrics": {
+      "dataset": "scifact_legacy",
+      "case_id": "scifact_105",
+      "base_case": "scifact_105",
+      "condition": "not_applicable",
+      "workflow_id": "debate_factcheck",
+      "topology": "branching",
+      "claim_id": "scifact_claim_105",
+      "full_node_count": 5,
+      "full_edge_count": 9,
+      "full_max_indegree": 3,
+      "full_max_outdegree": 3,
+      "full_branch_nodes": 3,
+      "full_merge_nodes": 3,
+      "full_weak_components": 1,
+      "full_longest_path_nodes": 5,
+      "full_longest_path_coverage": 1.0,
+      "full_nontrivial_chain": false,
+      "full_graph_kind": "branching_or_merging",
+      "active_node_count": 3,
+      "active_edge_count": 3,
+      "active_max_indegree": 2,
+      "active_max_outdegree": 2,
+      "active_branch_nodes": 1,
+      "active_merge_nodes": 1,
+      "active_weak_components": 1,
+      "active_longest_path_nodes": 3,
+      "active_longest_path_coverage": 1.0,
+      "active_nontrivial_chain": false,
+      "active_graph_kind": "branching_or_merging",
+      "legacy_link_count": 7,
+      "legacy_links_removed_nonactive_endpoint": 4,
+      "legacy_links_to_correction_or_challenge": 0,
+      "legacy_links_to_suppressed_or_other": 4,
+      "filtered_stored_links_equal_active_induced": true,
+      "final_regex_status": "suppressed_false",
+      "final_regex_active": false,
+      "final_pro_intensity": null,
+      "final_flash_prefix_intensity": null,
+      "cjk_step_count": 0
+    },
+    "raw_statuses": {
+      "df1": "introduced_false",
+      "df2": "transformed_false",
+      "df3": "suppressed_false",
+      "df4": "transformed_false",
+      "df5": "suppressed_false"
+    },
+    "raw_texts": {
+      "df1": "**Noisy claim:** Alteration of origin firing causes changes in termination zones of Okazaki fragments.\n\n**Facts:** Replication termination is a largely passive phenomenon that does not rely on cis-acting sequences or replication fork pausing. This was shown using a strain in which late origins can be induced to fire early.",
+      "df2": "The claim that alteration of origin firing causes changes in termination zones of Okazaki fragments is strongly supported by the evidence. The study directly investigated the impact of altered origin firing on replication termination. By inducing late origins to fire early, the researchers were able to observe the consequences for termination. Their finding that replication termination is a largely passive phenomenon, not relying on specific sequences or fork pausing, implies that the location of termination is primarily dictated by where replication forks converge. If origin firing is altered, the starting points and progression of replication forks will change, inevitably leading to different convergence points and thus altered termination zones. The experiment directly manipulated origin firing to understand termination, and the results are consistent with the idea that changing origin firing would indeed change where termination occurs.",
+      "df3": "The claim that altered origin firing *causes* changes in termination zones of Okazaki fragments is an overstatement based on the provided evidence. The abstract states that \"replication termination is a largely passive phenomenon that does not rely on cis-acting sequences or replication fork pausing.\" While this implies that termination is dictated by fork convergence, the evidence *doesn't directly state* that altering origin firing *changes* the termination zones. It only describes an experiment where late origins were induced to fire early to *study* the nature of termination. The conclusion is about the *mechanism* of termination (passive), not about the *variability* of termination zones in response to altered origin firing. The evidence doesn't explicitly link the *alteration* of origin firing to a *change* in termination zones.",
+      "df4": "The claim that alteration of origin firing causes changes in termination zones of Okazaki fragments is not directly supported by the provided abstract. The abstract states that \"replication termination is a largely passive phenomenon that does not rely on cis-acting sequences or replication fork pausing,\" a conclusion drawn from experiments where late origins were induced to fire early. While this finding suggests that termination is determined by the convergence of replication forks, and thus could be indirectly affected by changes in origin firing, the abstract does not explicitly state that altering origin firing *causes* a change in the *location* or *zones* of termination. The focus of the evidence is on the *mechanism* of termination (passive), not on the *variability* of termination zones in response to altered origin firing.",
+      "df5": "Claim Status: Not Supported\n\nEvidence Check:\nThe abstract states that \"replication termination is a largely passive phenomenon that does not rely on cis-acting sequences or replication fork pausing.\" This conclusion was drawn from experiments where late origins were induced to fire early. While this finding implies that termination is dictated by the convergence of replication forks, and therefore could be indirectly affected by changes in origin firing, the abstract does not explicitly state that altering origin firing *causes* a change in the *location* or *zones* of termination. The evidence describes an experiment designed to understand the *mechanism* of termination (passive), not to demonstrate the *variability* of termination zones in response to altered origin firing.\n\nFinal Recommendation:\nThe claim is not directly supported by the provided abstract. While the evidence suggests a passive mechanism for termination that would logically be influenced by origin firing, the abstract does not explicitly state that altering origin firing *causes* changes in termination zones."
+    },
+    "active_edges": [
+      [
+        "df1",
+        "df2"
+      ],
+      [
+        "df1",
+        "df4"
+      ],
+      [
+        "df2",
+        "df4"
+      ]
+    ],
+    "removed_legacy_edges": [
+      [
+        "df1",
+        "df3"
+      ],
+      [
+        "df2",
+        "df3"
+      ],
+      [
+        "df2",
+        "df5"
+      ],
+      [
+        "df4",
+        "df5"
+      ]
+    ]
+  }
+]

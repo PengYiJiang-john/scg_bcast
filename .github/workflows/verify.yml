@@ -1,4 +1,4 @@
-name: Verify finite numerical artifacts
+name: Verify numerical and archived evidence
 on:
   push:
   pull_request:
@@ -14,9 +14,15 @@ jobs:
           python-version: '3.14'
           cache: pip
       - run: python -m pip install -r requirements.txt
+      - run: python refresh_manifest.py --check
       - run: python -m unittest discover -s tests -v
       - run: python verification/verify_span_bound.py --output-dir reproduced/local
       - run: python archive/source_access/recompute.py --output-dir reproduced/local/source_access
+      - run: python analysis/propagation_graphs/analyze.py --self-test
+      - run: python analysis/propagation_graphs/analyze.py --output-dir reproduced/local/propagation_graphs
+      - run: python analysis/propagation_graphs/plot_examples.py --input-dir reproduced/local/propagation_graphs --output-dir reproduced/local/propagation_graphs/figures
+        env:
+          MPLBACKEND: Agg
       - run: python illustrative_example/deterministic_example.py --output reproduced/local/deterministic_results.json
       - run: python illustrative_example/make_counterfactual_overview.py --output-dir reproduced/local/figures
         env:

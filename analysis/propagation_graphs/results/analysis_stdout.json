@@ -1,0 +1,54 @@
+{
+  "h22": {
+    "runs": 120,
+    "active_kinds": {
+      "empty": 51,
+      "singleton": 18,
+      "nontrivial_chain": 6,
+      "disconnected": 29,
+      "branching_or_merging": 16
+    },
+    "chain_fraction_nontrivial": 0.11764705882352941,
+    "endpoint_cross_check": {
+      "records_with_pro_score": 120,
+      "exploratory_high_threshold": 0.8,
+      "high_score_count": 75,
+      "high_score_with_empty_regex_graph": 17,
+      "high_score_with_singleton_regex_graph": 11,
+      "high_score_with_nonactive_final_regex_status": 31,
+      "exact_one_score_with_empty_regex_graph": 16,
+      "interpretation": "Measurement discordance only, not a false-negative rate; prefix/global intensity is not a node label."
+    },
+    "legacy_edge_audit": {
+      "stored_edges": 225,
+      "removed_nonactive_endpoint_edges": 87,
+      "removed_to_correction_or_challenge": 9,
+      "removed_to_suppressed_or_other": 78
+    }
+  },
+  "scifact_legacy": {
+    "runs": 20,
+    "active_kinds": {
+      "singleton": 8,
+      "empty": 11,
+      "branching_or_merging": 1
+    },
+    "chain_fraction_nontrivial": 0.0,
+    "endpoint_cross_check": {
+      "records_with_pro_score": 0,
+      "exploratory_high_threshold": 0.8,
+      "high_score_count": 0,
+      "high_score_with_empty_regex_graph": 0,
+      "high_score_with_singleton_regex_graph": 0,
+      "high_score_with_nonactive_final_regex_status": 0,
+      "exact_one_score_with_empty_regex_graph": 0,
+      "interpretation": "Measurement discordance only, not a false-negative rate; prefix/global intensity is not a node label."
+    },
+    "legacy_edge_audit": {
+      "stored_edges": 23,
+      "removed_nonactive_endpoint_edges": 20,
+      "removed_to_correction_or_challenge": 2,
+      "removed_to_suppressed_or_other": 18
+    }
+  }
+}
