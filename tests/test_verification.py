@@ -117,21 +117,5 @@ class HistoricalSourceAccessTests(unittest.TestCase):
         self.assertIsNone(result["generation_model"])
 
 
-class PlannedBudgetTests(unittest.TestCase):
-    def test_plan_arithmetic_is_not_runtime_data(self):
-        plan = json.loads((ROOT / "configs/planned_experiments.json").read_text())
-        self.assertEqual(plan["status"], "planned_not_executed")
-        self.assertFalse(plan["executable_runner_included"])
-        e1, e3, budget = plan["E1"], plan["E3"], plan["planned_replays"]
-        self.assertEqual(e3["valid_cache_keys"], (1+e3["modes_per_position"])**e3["positions"])
-        development = e3["development_tasks"]*e3["valid_cache_keys"]*e3["repeats_per_key"]*e3["independent_estimation_batches"]
-        test = e3["test_tasks"]*e3["configurations"]*e3["test_repeats_per_configuration"]
-        intervention = e1["intervention_trajectories"]*len(e1["branches"])*e1["replays_per_branch_per_batch"]*e1["independent_batches"]
-        self.assertEqual((development, test, intervention), (19440, 12800, 5120))
-        self.assertEqual(budget["listed_total"], development+test+intervention)
-        self.assertEqual(budget["first_attempt_generation_call_upper_bound_for_listed_replays"], 4*budget["listed_total"])
-        self.assertEqual(budget["generation_call_bound_if_each_step_retried_once"], 8*budget["listed_total"])
-
-
 if __name__ == "__main__":
     unittest.main()

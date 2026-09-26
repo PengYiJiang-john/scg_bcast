@@ -1,8 +1,8 @@
-# SCG / BCAST: numerical checks and planned LLM protocols
+# SCG / BCAST: numerical checks and controlled LLM incentive experiments
 
-**有限状态 LP 和确定性示例已复跑；历史来源访问实验已恢复 120 条轨迹与原始评判记录，四个均值可离线重算。历史生成模型元数据仍不完整。E1–E3 的真实 LLM 比较实验尚未执行。**
+**本仓库提供有限状态数值核验、历史来源访问记录，以及新增的三参与者、三模式 LLM 受控激励实验。新增实验保存了 810 份输出，可离线复算联盟损失与均衡。此前未执行的 E1–E3 方案已从当前版本移除。**
 
-This repository accompanies a draft on semantic behavioral accountability. It contains executable finite-table checks, an exact deterministic example, and proposed LLM experiment protocols. It includes a recovered, separately identified H22 historical output archive. It does **not** contain completed FEVER/HoVer model evaluations or an implemented E1–E3 evaluation runner.
+This repository accompanies a draft on semantic behavioral accountability. It contains executable finite-table checks, an exact deterministic example, a recovered H22 historical output archive, and a controlled LLM mode-selection experiment. The latter uses saved outputs from three participants with three candidate modes and evaluates first-layer behavioral Shapley incentives under three fixed aggregation rules. It is separate from the eight-task semantic behavior audit in the manuscript; that audit’s raw replay data are not included here.
 
 ## Evidence status
 
@@ -10,13 +10,21 @@ This repository accompanies a draft on semantic behavioral accountability. It co
 |---|---|---|
 | Fixed-profile coalition-span LP | Original code/output, audited code, complete optimizer-generated witness tables | Locally reproduced mathematical constructions; no LLM data |
 | Three-behavior example | Explicit state transitions, eight losses, exact Shapley/SSV and missing-domain calculations, figure | Deterministic illustration; no LLM data |
-| E1 semantic recovery and local interventions | Draft protocol and planned configuration | Not executed; no measured scores |
-| E2 misleading behavior and remediation | Draft protocol | Not executed; eligible sample count and replay budget remain undetermined |
-| E3 mode selection | Draft protocol and planned configuration | Not executed; first-layer behavioral penalties only, no final SSV incentive validation |
+| Controlled LLM mode selection | 30 constructed tasks, 810 archived structured outputs, generation prompts, 58,320 derived coalition losses and equilibrium analysis | Offline reproduction from saved outputs; empirical finite game with fixed aggregation, whole-output cancellation and first-layer penalties |
 | Historical source-access means | 120 traces and 120 raw direct-judge responses, verified joins and reaggregation | Recovered descriptive output archive; exact generation runtime metadata incomplete |
 | Historical propagation graph audit | 120 H22 and 20 earlier SciFact traces, workflow and legacy rule graph metrics, examples | New post hoc analysis of archived outputs; legacy extraction has documented semantic errors |
 
 The 2026-09-26 audit reran the supplied numerical code after source inspection. The initial ZIPs supplied only four historical means; the subsequent local recovery found their underlying H22 records and reproduced all four means. Each condition has five base cases times six workflow structures, not thirty independent samples. See `archive/source_access/README.md` for the records and remaining limits; exact generation model/settings/dates are not recoverable from the saved traces.
+
+## Controlled LLM mode selection
+
+The [`llm_incentive/`](llm_incentive/) module contains three constructed task families (30 tasks in total), nine scored fields per task, and three repeated outputs for each participant and mode. `careful` and `distorter` use the recorded `gemini-2.5-flash` setting; `shortcut` uses `gemini-2.5-flash-lite`. Modes combine model and prompt changes, and `distorter` is an intentionally degraded stress condition rather than a naturally occurring agent type.
+
+The same saved outputs are reused under modular, majority-vote, and priority-override aggregation. Cancellation removes one participant’s whole output. The offline analysis enumerates 27 mode profiles and eight coalitions, computes Shapley penalties, and searches every pure profile. Each resulting empirical game has a unique Shapley equilibrium at `careful|careful|careful`, with full-participation losses 0.117284, 0.102469 and 0.106173. Each equals the best candidate loss; the priority-override environment has nine task-loss minimizers, so its optimum is not unique.
+
+Under priority override, LOO and team-loss incentives each admit nine equilibria. Their losses with participant C absent range from 0.116049 to 0.766667, compared with 0.116049 at the Shapley equilibrium. These are properties of the saved finite games, not evidence of convergence or optimality in arbitrary LLM workflows. In particular, the modular stability span is zero by construction, while the other two spans give uninformative worst-case loss bounds. The experiment does not implement local semantic cancellation, downstream LLM regeneration, or second-layer SSV incentives.
+
+See the module README for offline reproduction, archived-data provenance, and the explicitly separate optional interface for generating new outputs. The full manuscript and the supplied draft experiment narrative are not published in this repository.
 
 ## What the old propagation graphs establish
 
@@ -80,6 +88,7 @@ The support functions are illustrative assumptions, not inferred causal provenan
 
 ## Files and provenance
 
+- `llm_incentive/`: controlled mode-selection code, saved structured outputs, analysis tables, and offline verification.
 - `verification/verify_span_bound.py`: audited LP with precise result labels and saved witness tables.
 - `provenance/legacy_verify_span_bound.py`: byte-preserved original numerical script.
 - `verification/archived_results.txt`: supplied legacy stdout.
@@ -93,12 +102,3 @@ The support functions are illustrative assumptions, not inferred causal provenan
 - `archived_observations/`: original four-row historical CSV and a link to recovered provenance.
 - `archive/source_access/`: recovered raw H22 traces/judgments, source hashes, offline reaggregation, and limitations.
 - `analysis/propagation_graphs/`: post hoc graph metrics on archived H22 and earlier SciFact outputs, diagnostic examples, additional source hashes, and explicit extraction limits.
-- `protocols/LLM_EXPERIMENT_PROTOCOL.md` and `configs/planned_experiments.json`: draft study plans, not implemented experiments or frozen runtime assets. Manuscript LaTeX excerpts are retained locally but excluded from the GitHub experiment release.
-
-## LLM plan and remaining implementation work
-
-The draft plan proposes FEVER and HoVer, Qwen3-8B for generation, and Mistral Small 3.1 24B Instruct for semantic analysis and a separate model extension. Those model/dataset names are planned choices; no associated evaluation was executed here. Exact revisions, task manifests, frozen retrieval index, full prompts, matching/scoring rules, annotator records, runner, logs, and results are still missing.
-
-The listed budgets are arithmetic plans: E3 development `19,440` chain replays, E3 test `12,800`, and the listed E1 interventions `5,120`, totaling `37,360`. At four generated steps per replay, the **first-attempt** ceiling is `149,440` calls; allowing one retry per step raises that ceiling to `298,880`. Neither figure includes additional E2 coalition replays, initial natural-workflow trajectories, semantic analysis, reference editing, input-deletion diagnostics, visible-text ablations, or the second-model extension. The original `149,440` must not be described as the overall run ceiling.
-
-The protocol files mark unrun results explicitly. Their prescriptive language describes a proposal and is not a record that the proposed assets exist. No outcome numbers should be inserted without execution records and independent evaluation.

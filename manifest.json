@@ -3,7 +3,9 @@
   "audit_date_local": "2026-09-26",
   "input_archive": "SCG_BCAST_Experiments.zip",
   "input_archive_claims_preserved_in": "provenance/original_manifest.json",
-  "llm_experiments_E1_E2_E3_status": "planned_not_executed",
+  "unexecuted_protocols_status": "removed_from_release; preserved_in_git_history",
+  "llm_incentive_status": "810_author_supplied_structured_responses; complete_offline_rescoring_and_finite_game_enumeration",
+  "llm_incentive_source_manifest": "llm_incentive/source_manifest.json",
   "numerical_status": "locally_rerun_with_complete_constructed_witness_tables",
   "historical_H22_status": "archived_raw_responses_recovered_and_reaggregated; generator_metadata_incomplete",
   "propagation_graph_status": "posthoc_metrics_on_prescribed_workflows_and_legacy_rule_labels; not_semantic_ground_truth",
@@ -23,8 +25,8 @@
     },
     {
       "path": ".github/workflows/verify.yml",
-      "sha256": "c86e5582c5c7b7c079377cfbf2b274be7e0e3ee6ad91df099e247f7707b2d724",
-      "size_bytes": 1293
+      "sha256": "df7576c9c365d0f1c4a7ba5e969e12e1ab6745e09d2239e1d591faf53545ecc8",
+      "size_bytes": 1428
     },
     {
       "path": ".gitignore",
@@ -33,8 +35,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "2f8e30a0d8feaba395ddaf28431933994b6f84b99bd32fa25bc77fb4a7774f4f",
-      "size_bytes": 11632
+      "sha256": "bc4ec00f09e4cc0a904cb1ac7eaf6e7227a9ba0dd066127456a0193d773a0da4",
+      "size_bytes": 12222
     },
     {
       "path": "analysis/propagation_graphs/README.md",
@@ -252,11 +254,6 @@
       "size_bytes": 1509
     },
     {
-      "path": "configs/planned_experiments.json",
-      "sha256": "445397c3efec7849987b3876e86349455d48ed6dd150aca6084cc7d303741930",
-      "size_bytes": 3741
-    },
-    {
       "path": "illustrative_example/deterministic_example.py",
       "sha256": "3296962a8c4318cad429bf8da63ef16e4a02e5e313b6fe30a815b0b41329711b",
       "size_bytes": 4143
@@ -277,9 +274,114 @@
       "size_bytes": 68358
     },
     {
-      "path": "protocols/LLM_EXPERIMENT_PROTOCOL.md",
-      "sha256": "a7bc6f2071d9e744f10c7cf20b8ac3be2486c4d31457c4ad96d72d057fe105c3",
-      "size_bytes": 16549
+      "path": "llm_incentive/README.md",
+      "sha256": "d5c698f74c89c2934526c462dbcb3e2b202b652b47b7148de2b0ab8d11308075",
+      "size_bytes": 5413
+    },
+    {
+      "path": "llm_incentive/__init__.py",
+      "sha256": "ed1e9e41a2b181682dbfce239848f2bccb26606e7d39a2f0367a4ca0eac5095f",
+      "size_bytes": 69
+    },
+    {
+      "path": "llm_incentive/analyze_paper_results.py",
+      "sha256": "1fe4e3f02bcf5d52a67cec50b35c5033ec9d760d6b8bd68bbbed34ef840ce722",
+      "size_bytes": 13053
+    },
+    {
+      "path": "llm_incentive/paper/figure_incentive_experiment.pdf",
+      "sha256": "124085f8dc5b88818f6f87398a2560411cd2e7dd83340ebc85a607e50024e07a",
+      "size_bytes": 36014
+    },
+    {
+      "path": "llm_incentive/paper/figure_incentive_experiment.png",
+      "sha256": "93b7d691b40ea20f5f2b3fd795de991cfdacd8593c1293e93a8e51548d3b1482",
+      "size_bytes": 123822
+    },
+    {
+      "path": "llm_incentive/paper/table_equilibrium_comparison.csv",
+      "sha256": "342fd46d9e128ed9c902230848c9389b9fafa83339823ea8fe10c0e63635e31a",
+      "size_bytes": 1660
+    },
+    {
+      "path": "llm_incentive/paper/table_gatekeeper_incentives.csv",
+      "sha256": "c27bcb9f2db3d9e747f393739de2873e53ea925cecb1e7baced61208e6cf4461",
+      "size_bytes": 588
+    },
+    {
+      "path": "llm_incentive/paper/table_mode_quality_ci.csv",
+      "sha256": "ccf5aab131e7935f5428bc4bb6244e00b711d6d10784cd0ba0929678ac5c439a",
+      "size_bytes": 693
+    },
+    {
+      "path": "llm_incentive/paper/table_task_family_ci.csv",
+      "sha256": "d76ebf52844a08c4de0800a80b69dce5f50b61df549709236faf71e6dbfd2b65",
+      "size_bytes": 726
+    },
+    {
+      "path": "llm_incentive/paper/table_theory_audit.csv",
+      "sha256": "fe524e4d74ceb53f2c35ee967a8668513711673f4b186b71c0c146ac27b8051a",
+      "size_bytes": 492
+    },
+    {
+      "path": "llm_incentive/paper/table_workflow_profiles_ci.csv",
+      "sha256": "133321a4c3bb2fea561be4de75ee93fca1864a56614230a046d527c5b3b4bc1b",
+      "size_bytes": 936
+    },
+    {
+      "path": "llm_incentive/results_full/best_response_paths.csv",
+      "sha256": "342578fff60cd76ad1d6b5587574ff9f8f31f3a86a3a4c513894929d3fee6175",
+      "size_bytes": 21605
+    },
+    {
+      "path": "llm_incentive/results_full/coalition_case_losses.csv",
+      "sha256": "f8e580a9a1836a1d2ba730b0eb7d5b81918327d11579226c747ab9c23717d10e",
+      "size_bytes": 4036614
+    },
+    {
+      "path": "llm_incentive/results_full/environment_summary.csv",
+      "sha256": "905e068e05fff8135f498aadd220825f81c25a9f4623463e8d23b278da0f7683",
+      "size_bytes": 1405
+    },
+    {
+      "path": "llm_incentive/results_full/llm_outputs.csv",
+      "sha256": "28df839fc6fa68bfab89c2db24113b1b352914f4bb43e67d6418caca7f74c8f4",
+      "size_bytes": 189423
+    },
+    {
+      "path": "llm_incentive/results_full/mode_quality.csv",
+      "sha256": "8c2c91d55995b6ea8250c2d36800c393616757f7dcbae29942823564732d7640",
+      "size_bytes": 33167
+    },
+    {
+      "path": "llm_incentive/results_full/mode_quality_summary.csv",
+      "sha256": "e530029ad815bd8cbfc3c07ca1fc8b68634e7000513b681b29e083b0a4b4cd0a",
+      "size_bytes": 526
+    },
+    {
+      "path": "llm_incentive/results_full/profile_payoffs.csv",
+      "sha256": "9894ecd0ef0c633ce456fbcfa469d318f6d48972daa3d4501f8d74ac383be854",
+      "size_bytes": 11080
+    },
+    {
+      "path": "llm_incentive/results_full/summary.json",
+      "sha256": "e48e8716c726eaae3a34634459f5562036ff3d154e26f40a511a489750c881a6",
+      "size_bytes": 3400
+    },
+    {
+      "path": "llm_incentive/run_experiment.py",
+      "sha256": "7c7803522052d48bc718157b6faa27385ecf68bc3728fa66c0fc18e986bdbf2a",
+      "size_bytes": 34023
+    },
+    {
+      "path": "llm_incentive/source_manifest.json",
+      "sha256": "982ae20a3e9075dc73ad7a1463e49ddbbb6c046ee66958909517c67740c611fe",
+      "size_bytes": 3919
+    },
+    {
+      "path": "llm_incentive/verify_archive.py",
+      "sha256": "8de3e9d52b794749b2c83ff8ff7ac22c6f2e8e1dc50c23a50cde31410a8254d0",
+      "size_bytes": 4756
     },
     {
       "path": "provenance/legacy_make_counterfactual_overview.py",
@@ -298,13 +400,13 @@
     },
     {
       "path": "refresh_manifest.py",
-      "sha256": "cd2b6aef2eab540d8926cb7a5fe7f6a9319a5914b03c301cbdd2e964738ca151",
-      "size_bytes": 2504
+      "sha256": "69f3b303bbf9848d92b3fa3aaf38d0cffde2ff6d43e3c52674aa47c140452028",
+      "size_bytes": 2737
     },
     {
       "path": "reproduce.py",
-      "sha256": "30295d88a72bb932fa9efc68cde33f74898e6824d4d46b7a07e87cb6cf966072",
-      "size_bytes": 5162
+      "sha256": "8de482a774a2ca1d7f0e6541b0f658effc03b1b3b5758c3c560b2f267032b2aa",
+      "size_bytes": 5615
     },
     {
       "path": "reproduced/audit_2026-09-26/deterministic_results.json",
@@ -463,13 +565,18 @@
     },
     {
       "path": "requirements.txt",
-      "sha256": "29539f2a70feb4cae04f33b8e361406973793b9daaef7518800bf11c1edfaffe",
-      "size_bytes": 119
+      "sha256": "e72ba3fa6481f0ff675f02d565df73a53f1608a2456681191992e12c61410550",
+      "size_bytes": 133
+    },
+    {
+      "path": "tests/test_llm_incentive.py",
+      "sha256": "95ed3fb7ba5275dddb54cab0cfb5e285a1e18c161afb4025af9e9c5c4482d61d",
+      "size_bytes": 5346
     },
     {
       "path": "tests/test_verification.py",
-      "sha256": "e435839b2960014d2655eabd67face51fd0e3382954d5f55da4be467f32ac407",
-      "size_bytes": 7133
+      "sha256": "525a75838118b2f98b79ec6072b1dfe82095e3d16f77def96ac1c8c489eaa650",
+      "size_bytes": 5903
     },
     {
       "path": "verification/archived_results.txt",

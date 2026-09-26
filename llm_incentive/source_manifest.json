@@ -1,0 +1,108 @@
+{
+  "source_archive": "SLIC_LLM_Incentive_Experiment_20260926.zip",
+  "source_archive_sha256": "3234553ef89ab4255c3a7da75d6eb14ba8dcf0e072c476a04601411cf386de55",
+  "source_kind": "author-supplied experiment archive; outputs are archived structured model responses, not independently regenerated",
+  "source_files": [
+    {
+      "path": "README_ZH.md",
+      "sha256": "82f350f0e24ca680499a9870169637e7c22e76a7f2a249c3b78397679a613af3",
+      "size_bytes": 1839
+    },
+    {
+      "path": "analyze_paper_results.py",
+      "sha256": "68e65a5593a8e2ec394d5f2a74888b91eac1dc1b314f773124f9bf18eb5caac6",
+      "size_bytes": 12426
+    },
+    {
+      "path": "paper/figure_incentive_experiment.pdf",
+      "sha256": "124085f8dc5b88818f6f87398a2560411cd2e7dd83340ebc85a607e50024e07a",
+      "size_bytes": 36014
+    },
+    {
+      "path": "paper/figure_incentive_experiment.png",
+      "sha256": "93b7d691b40ea20f5f2b3fd795de991cfdacd8593c1293e93a8e51548d3b1482",
+      "size_bytes": 123822
+    },
+    {
+      "path": "paper/table_equilibrium_comparison.csv",
+      "sha256": "342fd46d9e128ed9c902230848c9389b9fafa83339823ea8fe10c0e63635e31a",
+      "size_bytes": 1660
+    },
+    {
+      "path": "paper/table_gatekeeper_incentives.csv",
+      "sha256": "c27bcb9f2db3d9e747f393739de2873e53ea925cecb1e7baced61208e6cf4461",
+      "size_bytes": 588
+    },
+    {
+      "path": "paper/table_mode_quality_ci.csv",
+      "sha256": "ccf5aab131e7935f5428bc4bb6244e00b711d6d10784cd0ba0929678ac5c439a",
+      "size_bytes": 693
+    },
+    {
+      "path": "paper/table_task_family_ci.csv",
+      "sha256": "d76ebf52844a08c4de0800a80b69dce5f50b61df549709236faf71e6dbfd2b65",
+      "size_bytes": 726
+    },
+    {
+      "path": "paper/table_theory_audit.csv",
+      "sha256": "fe524e4d74ceb53f2c35ee967a8668513711673f4b186b71c0c146ac27b8051a",
+      "size_bytes": 492
+    },
+    {
+      "path": "paper/table_workflow_profiles_ci.csv",
+      "sha256": "133321a4c3bb2fea561be4de75ee93fca1864a56614230a046d527c5b3b4bc1b",
+      "size_bytes": 936
+    },
+    {
+      "path": "paper/σ«₧Θ¬îσ░ÅΦèé_Σ╕¡µûçτëê.md",
+      "sha256": "864431296a114d1aaa869df9bfc1d0f8b4369f7286e0e451523f0f7b6afc97e6",
+      "size_bytes": 8227
+    },
+    {
+      "path": "results_full/best_response_paths.csv",
+      "sha256": "342578fff60cd76ad1d6b5587574ff9f8f31f3a86a3a4c513894929d3fee6175",
+      "size_bytes": 21605
+    },
+    {
+      "path": "results_full/coalition_case_losses.csv",
+      "sha256": "f8e580a9a1836a1d2ba730b0eb7d5b81918327d11579226c747ab9c23717d10e",
+      "size_bytes": 4036614
+    },
+    {
+      "path": "results_full/environment_summary.csv",
+      "sha256": "905e068e05fff8135f498aadd220825f81c25a9f4623463e8d23b278da0f7683",
+      "size_bytes": 1405
+    },
+    {
+      "path": "results_full/llm_outputs.csv",
+      "sha256": "28df839fc6fa68bfab89c2db24113b1b352914f4bb43e67d6418caca7f74c8f4",
+      "size_bytes": 189423
+    },
+    {
+      "path": "results_full/mode_quality.csv",
+      "sha256": "8c2c91d55995b6ea8250c2d36800c393616757f7dcbae29942823564732d7640",
+      "size_bytes": 33167
+    },
+    {
+      "path": "results_full/mode_quality_summary.csv",
+      "sha256": "e530029ad815bd8cbfc3c07ca1fc8b68634e7000513b681b29e083b0a4b4cd0a",
+      "size_bytes": 526
+    },
+    {
+      "path": "results_full/profile_payoffs.csv",
+      "sha256": "9894ecd0ef0c633ce456fbcfa469d318f6d48972daa3d4501f8d74ac383be854",
+      "size_bytes": 11080
+    },
+    {
+      "path": "results_full/summary.json",
+      "sha256": "e48e8716c726eaae3a34634459f5562036ff3d154e26f40a511a489750c881a6",
+      "size_bytes": 3400
+    },
+    {
+      "path": "run_experiment.py",
+      "sha256": "ce16007e67aba7dceba5033e511ff31e538a11e3cb27b3f76ceae168201a61e8",
+      "size_bytes": 30043
+    }
+  ],
+  "original_backend_status": "not included; private path removed; generation API parameters are source-declared, not verified transport records"
+}

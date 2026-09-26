@@ -18,6 +18,9 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python verification/verify_span_bound.py --output-dir reproduced/local
       - run: python archive/source_access/recompute.py --output-dir reproduced/local/source_access
+      - run: python llm_incentive/verify_archive.py --output-dir reproduced/local/llm_incentive
+        env:
+          MPLBACKEND: Agg
       - run: python analysis/propagation_graphs/analyze.py --self-test
       - run: python analysis/propagation_graphs/analyze.py --output-dir reproduced/local/propagation_graphs
       - run: python analysis/propagation_graphs/plot_examples.py --input-dir reproduced/local/propagation_graphs --output-dir reproduced/local/propagation_graphs/figures

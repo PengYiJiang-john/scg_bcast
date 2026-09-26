@@ -34,6 +34,7 @@ def main():
         ("graph_tests.txt", ["analysis/propagation_graphs/analyze.py", "--self-test"]),
         ("graph_stdout.json", ["analysis/propagation_graphs/analyze.py", "--output-dir", str(output_arg / "propagation_graphs")]),
         ("graph_figures.txt", ["analysis/propagation_graphs/plot_examples.py", "--input-dir", str(output_arg / "propagation_graphs"), "--output-dir", str(output_arg / "propagation_graphs/figures")]),
+        ("llm_incentive_stdout.json", ["llm_incentive/verify_archive.py", "--output-dir", str(output_arg / "llm_incentive")]),
         ("figure_stdout.txt", ["illustrative_example/make_counterfactual_overview.py", "--output-dir", str(output_arg / "figures")]),
     ]
     statuses = []
@@ -62,20 +63,23 @@ def main():
                     "provenance/legacy_verify_span_bound.py",
                     "illustrative_example/deterministic_example.py",
                     "illustrative_example/make_counterfactual_overview.py",
-                    "tests/test_verification.py", "configs/planned_experiments.json", "requirements.txt",
+                    "tests/test_verification.py", "requirements.txt",
                     "archive/source_access/recompute.py", "archive/source_access/source_manifest.json",
                     "analysis/propagation_graphs/analyze.py", "analysis/propagation_graphs/plot_examples.py",
-                    "analysis/propagation_graphs/data/source_manifest.json"]
+                    "analysis/propagation_graphs/data/source_manifest.json",
+                    "llm_incentive/run_experiment.py", "llm_incentive/analyze_paper_results.py",
+                    "llm_incentive/verify_archive.py", "llm_incentive/source_manifest.json",
+                    "llm_incentive/results_full/llm_outputs.csv", "tests/test_llm_incentive.py"]
     environment = {
         "run_finished_utc": datetime.now(timezone.utc).isoformat(),
         "python": platform.python_version(), "implementation": platform.python_implementation(),
         "platform": platform.system(), "machine": platform.machine(),
-        "packages": {p: version(p) for p in ("numpy", "scipy", "matplotlib")},
+        "packages": {p: version(p) for p in ("numpy", "scipy", "matplotlib", "pandas")},
         "source_sha256": {path: hashlib.sha256((ROOT/path).read_bytes()).hexdigest() for path in source_paths},
         "jobs": statuses,
         "archive_comparison_max_absolute_difference": maximum_difference,
         "comparison_tolerance": 1e-8,
-        "result_scope": "finite numerical constructions, exact toy arithmetic, offline H22 reaggregation and post hoc archived graph metrics; no new LLM runs",
+        "result_scope": "finite numerical constructions, exact toy arithmetic, offline H22 reaggregation and post hoc archived graph metrics, and offline reconstruction of the controlled LLM incentive game; no new LLM runs",
     }
     (out / "environment.json").write_text(json.dumps(environment, indent=2)+"\n")
     freeze = subprocess.run([sys.executable, "-m", "pip", "freeze"], text=True, capture_output=True, check=True)
