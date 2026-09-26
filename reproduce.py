@@ -1,8 +1,4 @@
-"""Reproduce numerical checks locally, with stdout, environment, and source hashes.
-
-No network, API, GPU, model download, or paid model call is used by this script.
-Install requirements before running. Saved loss tables are LP constructions.
-"""
+"""Recompute results from saved inputs and run consistency checks."""
 import argparse
 import ast
 from datetime import datetime, timezone
@@ -42,7 +38,6 @@ def main():
         process = subprocess.run([sys.executable, *command], cwd=ROOT, text=True,
                                  stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         (out / logfile).write_text(process.stdout)
-        # Avoid recording the user's absolute local directory in a public log.
         statuses.append({"log": logfile, "returncode": process.returncode})
         print(f"{logfile}: return code {process.returncode}")
         if process.returncode:
@@ -79,12 +74,11 @@ def main():
         "jobs": statuses,
         "archive_comparison_max_absolute_difference": maximum_difference,
         "comparison_tolerance": 1e-8,
-        "result_scope": "finite numerical constructions, exact toy arithmetic, offline H22 reaggregation and post hoc archived graph metrics, and offline reconstruction of the controlled LLM incentive game; no new LLM runs",
     }
     (out / "environment.json").write_text(json.dumps(environment, indent=2)+"\n")
     freeze = subprocess.run([sys.executable, "-m", "pip", "freeze"], text=True, capture_output=True, check=True)
     (out / "installed_packages.txt").write_text(freeze.stdout)
-    print("Local numerical checks and historical-output reaggregation passed. No new LLM execution or independent empirical replication was performed.")
+    print("All checks passed.")
 
 
 if __name__ == "__main__":

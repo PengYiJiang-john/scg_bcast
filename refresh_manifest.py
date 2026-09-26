@@ -1,4 +1,4 @@
-"""Refresh or verify the experiment release file inventory; no manuscript files."""
+"""Refresh or verify file checksums."""
 import argparse
 import hashlib
 import json
@@ -37,22 +37,11 @@ def main():
         print(f'Checked {len(rows)} experiment release files.')
         return
     result = {
-        'package': 'SCG_BCAST_Experiments_audited',
-        'audit_date_local': '2026-09-26',
-        'input_archive': 'SCG_BCAST_Experiments.zip',
-        'input_archive_claims_preserved_in': 'provenance/original_manifest.json',
-        'unexecuted_protocols_status': 'removed_from_release; preserved_in_git_history',
-        'llm_incentive_status': '810_author_supplied_structured_responses; complete_offline_rescoring_and_finite_game_enumeration',
-        'llm_incentive_source_manifest': 'llm_incentive/source_manifest.json',
-        'numerical_status': 'locally_rerun_with_complete_constructed_witness_tables',
-        'historical_H22_status': 'archived_raw_responses_recovered_and_reaggregated; generator_metadata_incomplete',
-        'propagation_graph_status': 'posthoc_metrics_on_prescribed_workflows_and_legacy_rule_labels; not_semantic_ground_truth',
-        'release_excludes': ['protocols/latex/', '.venv/', '.git/', '__pycache__/', 'reproduced/local/'],
-        'notes': 'This manifest is a file-integrity inventory, not a certificate of empirical or theoretical validity.',
+        'package': 'scg_bcast',
         'files': rows,
     }
     (ROOT/'manifest.json').write_text(json.dumps(result, indent=2, ensure_ascii=False)+'\n')
-    print(f'Recorded {len(rows)} experiment release files. Manuscript LaTeX excerpts are excluded.')
+    print(f'Recorded {len(rows)} files.')
 
 
 if __name__ == '__main__':

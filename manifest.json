@@ -1,22 +1,5 @@
 {
-  "package": "SCG_BCAST_Experiments_audited",
-  "audit_date_local": "2026-09-26",
-  "input_archive": "SCG_BCAST_Experiments.zip",
-  "input_archive_claims_preserved_in": "provenance/original_manifest.json",
-  "unexecuted_protocols_status": "removed_from_release; preserved_in_git_history",
-  "llm_incentive_status": "810_author_supplied_structured_responses; complete_offline_rescoring_and_finite_game_enumeration",
-  "llm_incentive_source_manifest": "llm_incentive/source_manifest.json",
-  "numerical_status": "locally_rerun_with_complete_constructed_witness_tables",
-  "historical_H22_status": "archived_raw_responses_recovered_and_reaggregated; generator_metadata_incomplete",
-  "propagation_graph_status": "posthoc_metrics_on_prescribed_workflows_and_legacy_rule_labels; not_semantic_ground_truth",
-  "release_excludes": [
-    "protocols/latex/",
-    ".venv/",
-    ".git/",
-    "__pycache__/",
-    "reproduced/local/"
-  ],
-  "notes": "This manifest is a file-integrity inventory, not a certificate of empirical or theoretical validity.",
+  "package": "scg_bcast",
   "files": [
     {
       "path": ".gitattributes",
@@ -35,13 +18,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "540badf59fcefaa83a142fcc51895bc70959e31008c0980c249320e7358e944b",
-      "size_bytes": 12403
+      "sha256": "585a8438d66e8f27041da1a7a290890e8ff0d25c05fd33439733eefd63c6cfa0",
+      "size_bytes": 1243
     },
     {
       "path": "analysis/propagation_graphs/README.md",
-      "sha256": "9e84d52f92ff8b7938bcb16e0e8437277d74008fea0a67eac891aa66fca84e73",
-      "size_bytes": 9449
+      "sha256": "d0e26bb23e57da4a44bfc9971b2f923ce2ebf2b8f52e13797c22511f5a2481f1",
+      "size_bytes": 1153
     },
     {
       "path": "analysis/propagation_graphs/analyze.py",
@@ -99,11 +82,6 @@
       "size_bytes": 7933
     },
     {
-      "path": "analysis/propagation_graphs/qualitative_checks.md",
-      "sha256": "79773046cb80fb23aedee0650114de2c43548b090e55cd055473be297f3c020f",
-      "size_bytes": 5884
-    },
-    {
       "path": "analysis/propagation_graphs/results/analysis_stdout.json",
       "sha256": "92c5119fda34dbe75a0951e0db814d57e003591f7e3f8c0e1afe1287b016a201",
       "size_bytes": 1778
@@ -145,8 +123,8 @@
     },
     {
       "path": "archive/source_access/README.md",
-      "sha256": "ea1bde3ada4558545b5e30d076174fbe36f5db239ad903f01b9353a4143c3422",
-      "size_bytes": 5297
+      "sha256": "e547e1a1f652691514746e8ac40f4dbc002f5e8e343558f7252a8b9ec0eff35d",
+      "size_bytes": 723
     },
     {
       "path": "archive/source_access/logs/generation_stdout.log",
@@ -250,8 +228,8 @@
     },
     {
       "path": "archived_observations/immunity_observations_README.md",
-      "sha256": "cec760bc885f6dc899bf99823391e819b5e9c9306564549d58bdc5db9df8d008",
-      "size_bytes": 1509
+      "sha256": "4557e68ece2e439c1da6db49845bf2866cba2d4fa029ff15254e85bb736328a2",
+      "size_bytes": 331
     },
     {
       "path": "illustrative_example/deterministic_example.py",
@@ -275,8 +253,8 @@
     },
     {
       "path": "llm_incentive/README.md",
-      "sha256": "d5c698f74c89c2934526c462dbcb3e2b202b652b47b7148de2b0ab8d11308075",
-      "size_bytes": 5413
+      "sha256": "05e8b7e414d241b579541b1809cb90f7769eac9ee7fe2beb000d040085d41db8",
+      "size_bytes": 2168
     },
     {
       "path": "llm_incentive/__init__.py",
@@ -400,13 +378,13 @@
     },
     {
       "path": "refresh_manifest.py",
-      "sha256": "69f3b303bbf9848d92b3fa3aaf38d0cffde2ff6d43e3c52674aa47c140452028",
-      "size_bytes": 2737
+      "sha256": "8df83c8257a97bb16184097a2fc5fa4145224270fae7ff1a928908576cd16865",
+      "size_bytes": 1577
     },
     {
       "path": "reproduce.py",
-      "sha256": "8de482a774a2ca1d7f0e6541b0f658effc03b1b3b5758c3c560b2f267032b2aa",
-      "size_bytes": 5615
+      "sha256": "8813a2b49f1d1fba875297a283868c12c99048f1ef10a9c04b1966f0f428d19c",
+      "size_bytes": 5013
     },
     {
       "path": "reproduced/audit_2026-09-26/deterministic_results.json",
@@ -497,11 +475,6 @@
       "path": "reproduced/environment.json",
       "sha256": "2878f54eebe01103eadd4aaa12c1aa9bd40017a46aec6169d55ac15566c4b3e7",
       "size_bytes": 165
-    },
-    {
-      "path": "reproduced/final_integration_2026-09-26/README.md",
-      "sha256": "5a0bce4d992a319487718de184f0ffb174deb2fdf3368a7ec4390c86d7170904",
-      "size_bytes": 531
     },
     {
       "path": "reproduced/final_integration_2026-09-26/deterministic_stdout.txt",
