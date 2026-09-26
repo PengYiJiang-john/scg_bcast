@@ -278,8 +278,8 @@
     },
     {
       "path": "protocols/LLM_EXPERIMENT_PROTOCOL.md",
-      "sha256": "ad14f33056348e315bb8f3db3f8201085d35825943a3c8cf5472a5bdec2243e9",
-      "size_bytes": 16437
+      "sha256": "a7bc6f2071d9e744f10c7cf20b8ac3be2486c4d31457c4ad96d72d057fe105c3",
+      "size_bytes": 16549
     },
     {
       "path": "provenance/legacy_make_counterfactual_overview.py",
