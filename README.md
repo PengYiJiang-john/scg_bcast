@@ -36,7 +36,7 @@ Text inspection found a six-step Chinese trajectory that retains the target erro
 
 ## Reproduce the available numerical checks
 
-The local audit used CPython 3.14.7, NumPy 2.5.3, SciPy 1.18.1, and Matplotlib 3.11.2 on macOS arm64. Use Python 3.14 and the pinned requirements:
+The local audit used CPython 3.14.7, NumPy 2.5.3, SciPy 1.18.1, Matplotlib 3.11.2, and pandas 3.0.6 on macOS arm64. Use Python 3.14 and the pinned requirements:
 
 ```sh
 python3 -m venv .venv
@@ -45,7 +45,7 @@ python -m pip install -r requirements.txt
 python reproduce.py
 ```
 
-`reproduce.py` writes to `reproduced/local/`, leaving the archived and dated audit outputs intact. It runs the unmodified legacy LP, the audited LP, the exact deterministic calculation, seven independent numerical test cases, graph metric fixtures, and figure generators. It saves raw stdout, both complete LP witness tables, numerical summaries, test output, environment information, source hashes, and installed package versions. It also recomputes the recovered H22 archive and post hoc graph metrics entirely offline and checks archived versus fresh legacy LP output numerically (tolerance `1e-8`). There are no fresh random simulations or model calls in this suite; historical model outputs are read as archived data.
+`reproduce.py` writes to `reproduced/local/`, leaving the archived and dated audit outputs intact. It runs the unmodified legacy LP, the audited LP, the exact deterministic calculation, eleven unit tests for numerical calculations, stored-output rescoring, cancellation, and empirical equilibria, graph metric fixtures, and figure generators. It saves raw stdout, both complete LP witness tables, numerical summaries, test output, environment information, source hashes, and installed package versions. It also recomputes the recovered H22 archive and post hoc graph metrics entirely offline and checks archived versus fresh legacy LP output numerically (tolerance `1e-8`). The suite also reconstructs the controlled incentive game from its 810 stored outputs and checks every released result and statistical table. It makes no new model calls; all model outputs are read as archived data.
 
 Individual commands:
 
