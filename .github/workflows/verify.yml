@@ -18,6 +18,7 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: python verification/verify_span_bound.py --output-dir reproduced/local
       - run: python archive/source_access/recompute.py --output-dir reproduced/local/source_access
+      - run: python natural_workflows/verify_archive.py --output-dir reproduced/local/natural_workflows
       - run: python llm_incentive/verify_archive.py --output-dir reproduced/local/llm_incentive
         env:
           MPLBACKEND: Agg

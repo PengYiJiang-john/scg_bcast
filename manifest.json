@@ -8,8 +8,8 @@
     },
     {
       "path": ".github/workflows/verify.yml",
-      "sha256": "df7576c9c365d0f1c4a7ba5e969e12e1ab6745e09d2239e1d591faf53545ecc8",
-      "size_bytes": 1428
+      "sha256": "4223b3c921b32c85d5c81657e91e11abf9ff243806800b952ced9e5ad17985c5",
+      "size_bytes": 1532
     },
     {
       "path": ".gitignore",
@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "2be3df3c86e52eeba398797194bef77e13c9cd2215fc264c03265110df0891ef",
-      "size_bytes": 1718
+      "sha256": "130f3e5d671e0752f96afe6098a7d945ef98d9dc6422c5afc8bbf2df8713c139",
+      "size_bytes": 2048
     },
     {
       "path": "analysis/propagation_graphs/README.md",
@@ -312,6 +312,236 @@
       "size_bytes": 9919
     },
     {
+      "path": "natural_workflows/README.md",
+      "sha256": "47e3abc9d2bd8a3786a1b7c9af070a0456137a01b09f506357440ffc6e259dd1",
+      "size_bytes": 5314
+    },
+    {
+      "path": "natural_workflows/case_index.csv",
+      "sha256": "e9b91d0c38e5f07f4652089745429ef7f9f066b08631d7efd57731c9059b5ce1",
+      "size_bytes": 30817
+    },
+    {
+      "path": "natural_workflows/config.json",
+      "sha256": "e08f68f21ed518bf7da4c7039dcd9dd6b380d6c52865ae5affb70fcdadf814e9",
+      "size_bytes": 677
+    },
+    {
+      "path": "natural_workflows/data/drop/factual.jsonl",
+      "sha256": "3abc9b10952863b95f697770a960f987ce43de3738d70e57a361dd3b9a1d3eed",
+      "size_bytes": 184782
+    },
+    {
+      "path": "natural_workflows/data/drop/inputs.jsonl",
+      "sha256": "4f062fd935e9a890fd54697718c4853ecdd7bac7bb41240ab95e8f9e4b0cba9d",
+      "size_bytes": 78089
+    },
+    {
+      "path": "natural_workflows/data/drop/replay_pairs.jsonl.gz",
+      "sha256": "4b18978e7db48b693561b98c27a00dd49820756a82e6458cf3c76b34af75c8ba",
+      "size_bytes": 98391
+    },
+    {
+      "path": "natural_workflows/data/drop/semantic_graphs.jsonl.gz",
+      "sha256": "6b765bcb121682d1c90a0fe8fae0f563e69ce8af8cd91f02e41ab8cb34de9102",
+      "size_bytes": 477747
+    },
+    {
+      "path": "natural_workflows/data/gsm8k/factual.jsonl",
+      "sha256": "464ae7c0fff5016cf830915d02baf66ce5176fc6fb8ed5d899d09625cbd967d3",
+      "size_bytes": 215673
+    },
+    {
+      "path": "natural_workflows/data/gsm8k/inputs.jsonl",
+      "sha256": "be339fec9ba33f5d9fe9e358f1d8705b1483aaaf17a9f3dde859d1431bcfcaec",
+      "size_bytes": 53673
+    },
+    {
+      "path": "natural_workflows/data/gsm8k/replay_pairs.jsonl.gz",
+      "sha256": "00b71e015f2800ea85b9ed83bfb62cee378e2a62a084de3c550c9170f6efde58",
+      "size_bytes": 152624
+    },
+    {
+      "path": "natural_workflows/data/gsm8k/semantic_graphs.jsonl.gz",
+      "sha256": "77b0e55fc47b5b4d3ba0a24753f5dbd436a33c3faa1606ed61cd5203e3a60188",
+      "size_bytes": 637944
+    },
+    {
+      "path": "natural_workflows/data/hotpotqa/factual.jsonl",
+      "sha256": "abc33d1c8d8811559cd828465d668eaf927af4f40f4bfa15d6842b9802d21236",
+      "size_bytes": 205417
+    },
+    {
+      "path": "natural_workflows/data/hotpotqa/inputs.jsonl",
+      "sha256": "25a14b288ef3d80d39ef1e209766ada0fefba813057e02173e8650c02a916a2b",
+      "size_bytes": 328028
+    },
+    {
+      "path": "natural_workflows/data/hotpotqa/replay_pairs.jsonl.gz",
+      "sha256": "06c8b5db1f326d9ba261479829e57cc2d3882236b5bed14d004204687968594d",
+      "size_bytes": 104022
+    },
+    {
+      "path": "natural_workflows/data/hotpotqa/semantic_graphs.jsonl.gz",
+      "sha256": "b23b01117d58ed97b5ac663e10e600c01638c59492d0302d3faefdca509ab04a",
+      "size_bytes": 462889
+    },
+    {
+      "path": "natural_workflows/data/legal_hearsay/factual.jsonl",
+      "sha256": "b561aa48bbcc62af5321001a13858f1106422d88d4bf2c613ad9a54aa4e53b81",
+      "size_bytes": 222141
+    },
+    {
+      "path": "natural_workflows/data/legal_hearsay/inputs.jsonl",
+      "sha256": "1c233a7bddef95c6156afcf20bcd62257fe810ceff55db339c7f16d8bc3ee0e4",
+      "size_bytes": 88066
+    },
+    {
+      "path": "natural_workflows/data/legal_hearsay/replay_pairs.jsonl.gz",
+      "sha256": "ebc28c1df85ad85d58de19af745feb279987412305494cb02a4a41ea8067555a",
+      "size_bytes": 150375
+    },
+    {
+      "path": "natural_workflows/data/legal_hearsay/semantic_graphs.jsonl.gz",
+      "sha256": "2ba7fa3aaa78a96cc676ddfa949c4f042a49837f9702f11d351cf5f723ae4d37",
+      "size_bytes": 638569
+    },
+    {
+      "path": "natural_workflows/data/musique/factual.jsonl",
+      "sha256": "702387fa93c67d20565a07750ca08aeb600e23884dce2b26d57be89bf823e9fe",
+      "size_bytes": 269343
+    },
+    {
+      "path": "natural_workflows/data/musique/inputs.jsonl",
+      "sha256": "0b68e40c6ce4521ab8576e7580afe2ea7d2e6e65f7e948c1cf9bc6eb6604746f",
+      "size_bytes": 601055
+    },
+    {
+      "path": "natural_workflows/data/musique/replay_pairs.jsonl.gz",
+      "sha256": "e68948875555c33ed2b5e2230affd7a401b551afebf528b1f34d4715219dba81",
+      "size_bytes": 141782
+    },
+    {
+      "path": "natural_workflows/data/musique/semantic_graphs.jsonl.gz",
+      "sha256": "71378fa53c67c9586ca6d94b234d32327d9e7790231d090c49b221bc77e68400",
+      "size_bytes": 652820
+    },
+    {
+      "path": "natural_workflows/data/scifact/factual.jsonl",
+      "sha256": "3df0cb22435ce0da1183768868d354e477c06782b26821f8db3a665243574c94",
+      "size_bytes": 228325
+    },
+    {
+      "path": "natural_workflows/data/scifact/inputs.jsonl",
+      "sha256": "3f229165f9772d5fd355bbc53be9f2ea393daf46981077a9dced9428092ee3f8",
+      "size_bytes": 259896
+    },
+    {
+      "path": "natural_workflows/data/scifact/replay_pairs.jsonl.gz",
+      "sha256": "81f379277bf1e5ae4fc78a415197b24b98a9a3efd8acc5d79ef6f58474b92613",
+      "size_bytes": 160405
+    },
+    {
+      "path": "natural_workflows/data/scifact/semantic_graphs.jsonl.gz",
+      "sha256": "4572235e2102ce4317aa175f372e7a50a07701072f94a6e2627251e5208095a1",
+      "size_bytes": 615228
+    },
+    {
+      "path": "natural_workflows/data/tabfact/factual.jsonl",
+      "sha256": "52f8b527b42d67223e4d68f615e94b4ce622e7736ac362c856b73b1dca44fe83",
+      "size_bytes": 220299
+    },
+    {
+      "path": "natural_workflows/data/tabfact/inputs.jsonl",
+      "sha256": "be2b6e498d233d6795130ff71e8efc70ecd945d73645233e98089c1b78792361",
+      "size_bytes": 89466
+    },
+    {
+      "path": "natural_workflows/data/tabfact/replay_pairs.jsonl.gz",
+      "sha256": "c8afb4f4c73ec1e199067f3079fda12afdd3ad5dd512194b7df43b5f97d1776b",
+      "size_bytes": 150516
+    },
+    {
+      "path": "natural_workflows/data/tabfact/semantic_graphs.jsonl.gz",
+      "sha256": "15971bcf43e4babb4180a7b1d2f93d6a1276e1d1be74bf2c6cf24c61ef88b4f5",
+      "size_bytes": 638074
+    },
+    {
+      "path": "natural_workflows/data/tatqa/factual.jsonl",
+      "sha256": "4c2b25f982aa8aec21aea0c34b54baae86546f72b59f65a3b4eddae6d1d74630",
+      "size_bytes": 204597
+    },
+    {
+      "path": "natural_workflows/data/tatqa/inputs.jsonl",
+      "sha256": "d0e69d8af9902a7c6a59fbaabc720b976407804297c3b11d0df8e5b4160537d8",
+      "size_bytes": 130581
+    },
+    {
+      "path": "natural_workflows/data/tatqa/replay_pairs.jsonl.gz",
+      "sha256": "a54fa849d7beb6e1dd4542f879e797aa6c965d0c838073b868b2417208c5a368",
+      "size_bytes": 111565
+    },
+    {
+      "path": "natural_workflows/data/tatqa/semantic_graphs.jsonl.gz",
+      "sha256": "4acdac5ac9b5d684ec7054a101ea0741b545117b99e9e822393a0f2baf040ea2",
+      "size_bytes": 505843
+    },
+    {
+      "path": "natural_workflows/inspect_case.py",
+      "sha256": "e2b1dc78409641477da9139ce26dc37625f5563c6e05fd8105269f70bffc049b",
+      "size_bytes": 1977
+    },
+    {
+      "path": "natural_workflows/replay_availability.jsonl.gz",
+      "sha256": "9c769833f1636ced45cf60f46ba74afe2fd7510bfb06ca1c8da05ac65a1fdfc2",
+      "size_bytes": 169703
+    },
+    {
+      "path": "natural_workflows/source_manifest.json",
+      "sha256": "08fd55658ee8ec2dc9245919963218363f3a22d10288693dd75d2c32eb8ea7b2",
+      "size_bytes": 188735
+    },
+    {
+      "path": "natural_workflows/src/natural_bcast/__init__.py",
+      "sha256": "67b7b9e780cdf361510d82d7fb18c1eada2e6ef256ad88e21ab24524801f6ad3",
+      "size_bytes": 69
+    },
+    {
+      "path": "natural_workflows/src/natural_bcast/data.py",
+      "sha256": "f3a91e1b8a93f1876acd0c8cbdbd0777e9dc18a7968f134c9cb1363c00648c92",
+      "size_bytes": 30375
+    },
+    {
+      "path": "natural_workflows/src/natural_bcast/llm.py",
+      "sha256": "aa85fb20dde76f06297689e697be64db547c46efeba898703e53f2ba30cd8054",
+      "size_bytes": 18564
+    },
+    {
+      "path": "natural_workflows/src/natural_bcast/replay.py",
+      "sha256": "5f9cdca250de769c62cc9aa141ecdaa82c19c6cc684907d9cf40aa3ed4b3ca19",
+      "size_bytes": 47185
+    },
+    {
+      "path": "natural_workflows/src/natural_bcast/semantics.py",
+      "sha256": "51d4eeb6132a8fa1b64d4ad70e1d726264f6019c3559cddf73c71fd347be61b7",
+      "size_bytes": 77339
+    },
+    {
+      "path": "natural_workflows/src/natural_bcast/workflow.py",
+      "sha256": "f47cc55a7341c24caadefd1cc57b1c1ed161573d6f1ee72ee29bcea98168d263",
+      "size_bytes": 16045
+    },
+    {
+      "path": "natural_workflows/summary.json",
+      "sha256": "41356c2a389aea6fe5c8f128e97c03d849e321e058fec98c66fe8eef9cd1be7f",
+      "size_bytes": 1488
+    },
+    {
+      "path": "natural_workflows/verify_archive.py",
+      "sha256": "b55cc39ed3aa8c5ed550bf2c3f80eaf82ef3d4451e0cfe407dbc25073816611b",
+      "size_bytes": 8820
+    },
+    {
       "path": "provenance/legacy_verify_span_bound.py",
       "sha256": "afff244b4453607f69820a8f59543da352d1cc3899b8582b2661f65423e90e91",
       "size_bytes": 3601
@@ -323,8 +553,8 @@
     },
     {
       "path": "reproduce.py",
-      "sha256": "b169bc3608a29e5393b8cb865a537485bbd3ff597820bc37bb58e3c7ffbcae64",
-      "size_bytes": 5090
+      "sha256": "7839cf0780e618d47eb9f0bab0067609c7d4ac20bb776b500ce7669ac2ac3fd0",
+      "size_bytes": 5525
     },
     {
       "path": "requirements.txt",
@@ -335,6 +565,11 @@
       "path": "tests/test_llm_incentive.py",
       "sha256": "de448cdeba860de740ad42c6df3cba70f47bb1b17f855288efb959598b7b426f",
       "size_bytes": 4555
+    },
+    {
+      "path": "tests/test_natural_workflows.py",
+      "sha256": "8824e60bb2975e6bcf4abbf4dca3fad511bd90b8f0c99fae04087059c0ac198a",
+      "size_bytes": 1810
     },
     {
       "path": "tests/test_verification.py",

@@ -31,6 +31,7 @@ def main():
         ("graph_stdout.json", ["analysis/propagation_graphs/analyze.py", "--output-dir", str(output_arg / "propagation_graphs")]),
         ("graph_figures.txt", ["analysis/propagation_graphs/plot_examples.py", "--input-dir", str(output_arg / "propagation_graphs"), "--output-dir", str(output_arg / "propagation_graphs/figures")]),
         ("llm_incentive_stdout.json", ["llm_incentive/verify_archive.py", "--output-dir", str(output_arg / "llm_incentive")]),
+        ("natural_workflows_stdout.json", ["natural_workflows/verify_archive.py", "--output-dir", str(output_arg / "natural_workflows")]),
         ("figure_stdout.txt", ["illustrative_example/make_counterfactual_overview.py", "--output-dir", str(output_arg / "figures")]),
     ]
     statuses = []
@@ -65,7 +66,10 @@ def main():
                     "llm_incentive/run_experiment.py", "llm_incentive/analyze_paper_results.py",
                     "llm_incentive/verify_archive.py", "llm_incentive/source_manifest.json",
                     "llm_incentive/protocol.py", "llm_incentive/llm.py",
-                    "llm_incentive/data/profile_game_traces.json.gz", "tests/test_llm_incentive.py"]
+                    "llm_incentive/data/profile_game_traces.json.gz", "tests/test_llm_incentive.py",
+                    "natural_workflows/verify_archive.py", "natural_workflows/inspect_case.py",
+                    "natural_workflows/source_manifest.json", "natural_workflows/case_index.csv",
+                    "natural_workflows/src/natural_bcast/data.py", "tests/test_natural_workflows.py"]
     environment = {
         "run_finished_utc": datetime.now(timezone.utc).isoformat(),
         "python": platform.python_version(), "implementation": platform.python_implementation(),

@@ -1,0 +1,82 @@
+{
+  "cases": 400,
+  "tasks": [
+    {
+      "task": "hotpotqa",
+      "cases": 50,
+      "NEW": 520,
+      "TRANSFORMED": 344,
+      "PRESERVED": 630,
+      "pairs": 137
+    },
+    {
+      "task": "tatqa",
+      "cases": 50,
+      "NEW": 691,
+      "TRANSFORMED": 306,
+      "PRESERVED": 740,
+      "pairs": 134
+    },
+    {
+      "task": "legal_hearsay",
+      "cases": 50,
+      "NEW": 641,
+      "TRANSFORMED": 650,
+      "PRESERVED": 677,
+      "pairs": 162
+    },
+    {
+      "task": "scifact",
+      "cases": 50,
+      "NEW": 825,
+      "TRANSFORMED": 435,
+      "PRESERVED": 612,
+      "pairs": 183
+    },
+    {
+      "task": "drop",
+      "cases": 50,
+      "NEW": 572,
+      "TRANSFORMED": 395,
+      "PRESERVED": 577,
+      "pairs": 132
+    },
+    {
+      "task": "gsm8k",
+      "cases": 50,
+      "NEW": 929,
+      "TRANSFORMED": 569,
+      "PRESERVED": 792,
+      "pairs": 158
+    },
+    {
+      "task": "musique",
+      "cases": 50,
+      "NEW": 794,
+      "TRANSFORMED": 371,
+      "PRESERVED": 732,
+      "pairs": 118
+    },
+    {
+      "task": "tabfact",
+      "cases": 50,
+      "NEW": 829,
+      "TRANSFORMED": 530,
+      "PRESERVED": 705,
+      "pairs": 159
+    }
+  ],
+  "relations": {
+    "NEW": 5801,
+    "TRANSFORMED": 3600,
+    "PRESERVED": 5465,
+    "pairs": 1183
+  },
+  "replay_availability": {
+    "cache_missing": 17289,
+    "cached_complete_pair": 1183,
+    "cached_identity_inapplicable": 86,
+    "cached_execution_error": 244
+  },
+  "export_model_calls": 0
+}

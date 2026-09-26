@@ -1,0 +1,34 @@
+{
+  "seed": 20260925,
+  "tasks": {
+    "hotpotqa": 50,
+    "tatqa": 50,
+    "legal_hearsay": 50,
+    "scifact": 50,
+    "drop": 50,
+    "gsm8k": 50,
+    "musique": 50,
+    "tabfact": 50
+  },
+  "splits": {
+    "discovery_fraction": 0.6,
+    "validation_fraction": 0.4
+  },
+  "models": {
+    "workflow": "gemini-2.5-flash-lite",
+    "analyzer": "gemini-2.5-flash",
+    "editor": "gemini-2.5-flash",
+    "editor_fallback": "gemini-2.5-pro"
+  },
+  "temperatures": {
+    "workflow": 0.35,
+    "analyzer": 0.0,
+    "editor": 0.0
+  },
+  "limits": {
+    "agent_output_words": 260,
+    "max_source_chars": 14000,
+    "max_output_tokens": 1800,
+    "analyzer_output_tokens": 16000
+  }
+}
