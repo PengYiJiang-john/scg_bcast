@@ -1,4 +1,4 @@
-# Versions actually used for the 2026-09-26 local audit (Python 3.14.7).
+# Reproduction environment (Python 3.14.7).
 numpy==2.5.3
 scipy==1.18.1
 matplotlib==3.11.2

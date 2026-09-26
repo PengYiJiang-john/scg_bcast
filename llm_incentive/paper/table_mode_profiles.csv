@@ -1,0 +1,4 @@
+mode_profile,mean_loss,std_over_replays,replay_losses
+careful|careful|careful,0.0,0.0,0.000000;0.000000;0.000000
+shortcut|shortcut|shortcut,0.44999999999999996,0.0,0.450000;0.450000;0.450000
+distorter|distorter|distorter,0.5333333333333333,0.028867513459481315,0.550000;0.550000;0.500000

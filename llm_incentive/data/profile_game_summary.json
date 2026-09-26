@@ -1,0 +1,44 @@
+{
+  "repeats": 3,
+  "global_optimum_loss": 0.0,
+  "global_optimum_profiles": [
+    "careful|careful|careful"
+  ],
+  "equilibria": [
+    "careful|careful|careful"
+  ],
+  "equilibrium_losses": [
+    0.0
+  ],
+  "max_exact_potential_deviation_error": 2.220446049250313e-16,
+  "best_response_endpoints": {
+    "careful|careful|careful": "careful|careful|careful",
+    "careful|careful|shortcut": "careful|careful|careful",
+    "careful|careful|distorter": "careful|careful|careful",
+    "careful|shortcut|careful": "careful|careful|careful",
+    "careful|shortcut|shortcut": "careful|careful|careful",
+    "careful|shortcut|distorter": "careful|careful|careful",
+    "careful|distorter|careful": "careful|careful|careful",
+    "careful|distorter|shortcut": "careful|careful|careful",
+    "careful|distorter|distorter": "careful|careful|careful",
+    "shortcut|careful|careful": "careful|careful|careful",
+    "shortcut|careful|shortcut": "careful|careful|careful",
+    "shortcut|careful|distorter": "careful|careful|careful",
+    "shortcut|shortcut|careful": "careful|careful|careful",
+    "shortcut|shortcut|shortcut": "careful|careful|careful",
+    "shortcut|shortcut|distorter": "careful|careful|careful",
+    "shortcut|distorter|careful": "careful|careful|careful",
+    "shortcut|distorter|shortcut": "careful|careful|careful",
+    "shortcut|distorter|distorter": "careful|careful|careful",
+    "distorter|careful|careful": "careful|careful|careful",
+    "distorter|careful|shortcut": "careful|careful|careful",
+    "distorter|careful|distorter": "careful|careful|careful",
+    "distorter|shortcut|careful": "careful|careful|careful",
+    "distorter|shortcut|shortcut": "careful|careful|careful",
+    "distorter|shortcut|distorter": "careful|careful|careful",
+    "distorter|distorter|careful": "careful|careful|careful",
+    "distorter|distorter|shortcut": "careful|careful|careful",
+    "distorter|distorter|distorter": "careful|careful|careful"
+  },
+  "all_starts_end_at_equilibrium": true
+}

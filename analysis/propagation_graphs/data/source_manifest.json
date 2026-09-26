@@ -51,6 +51,5 @@
       "sha256": "d6d30e9fdbbed4259a487ab698f2153a6811f55ec10f35105deb761ecf5bbbe8",
       "size_bytes": 239402
     }
-  ],
-  "credential_scan": "Selected files scanned for common API tokens and private keys: no matches. Environment files were not read or copied."
+  ]
 }

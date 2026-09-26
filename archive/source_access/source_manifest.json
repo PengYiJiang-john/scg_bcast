@@ -1,7 +1,7 @@
 {
-  "status": "recovered_local_archived_logs_not_new_model_runs",
+  "status": "saved_workflow_and_judge_records",
   "recovered_on": "2026-09-26",
-  "notes": "Source scripts are snapshots as found, not proven historical run versions. No credentials or manuscript included. Generation model/configuration were not persisted in run rows.",
+  "notes": "Source scripts are archived snapshots. Generation model/configuration were not persisted in the run rows.",
   "files": [
     {
       "source_project": "scg_rumor_propagation",
@@ -37,20 +37,6 @@
       "archive_path": "raw/judge_errors.jsonl",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "bytes": 0
-    },
-    {
-      "source_project": "scg_rumor_propagation",
-      "source_relative_path": "outputs/iterative_hypothesis_v2/archive/command_logs/76_h22_source_visibility_matrix.log",
-      "archive_path": "logs/generation_stdout.log",
-      "sha256": "2b1851c16d0a6d6d23c5086d1f37c0830757d4a332bf38a932ca1389901c498b",
-      "bytes": 17482
-    },
-    {
-      "source_project": "scg_rumor_propagation",
-      "source_relative_path": "outputs/iterative_hypothesis_v2/archive/command_logs/84_h22_final_pro_audit_v2.log",
-      "archive_path": "logs/judge_stdout.log",
-      "sha256": "8aa954fca940942506f5440473127ca1a2d87a4615a0118b7c59b59672436a14",
-      "bytes": 9533
     },
     {
       "source_project": "scg_rumor_propagation",

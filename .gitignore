@@ -7,3 +7,6 @@ __pycache__/
 .env.*
 !*.example
 reproduced/local/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

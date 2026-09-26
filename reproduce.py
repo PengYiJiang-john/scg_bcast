@@ -64,7 +64,8 @@ def main():
                     "analysis/propagation_graphs/data/source_manifest.json",
                     "llm_incentive/run_experiment.py", "llm_incentive/analyze_paper_results.py",
                     "llm_incentive/verify_archive.py", "llm_incentive/source_manifest.json",
-                    "llm_incentive/results_full/llm_outputs.csv", "tests/test_llm_incentive.py"]
+                    "llm_incentive/protocol.py", "llm_incentive/llm.py",
+                    "llm_incentive/data/profile_game_traces.json.gz", "tests/test_llm_incentive.py"]
     environment = {
         "run_finished_utc": datetime.now(timezone.utc).isoformat(),
         "python": platform.python_version(), "implementation": platform.python_implementation(),
